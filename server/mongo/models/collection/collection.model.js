@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const {sequelize} = require("../../mysql/connect");
+const {sequelize} = require("../../../mysql/connect");
 
 const Collection = sequelize.define('collections', {
     name: {

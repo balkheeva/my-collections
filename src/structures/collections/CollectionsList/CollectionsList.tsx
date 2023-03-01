@@ -1,18 +1,31 @@
-import {Row, Col} from "react-bootstrap";
-import Collection from "../Collection";
+import {Row, Col, CardGroup} from "react-bootstrap";
 import {TCollection} from 'api/collections'
+import CollectionCard from "../CollectionCard/CollectionCard";
+import CardCover from "../../../components/images/CardCover";
 
-export default function CollectionsList({collections, onOpenCollection}: { collections: TCollection[], onOpenCollection: (id: string) => void }) {
+type Props = {
+    collections: TCollection[],
+    onOpenCollection: (id: string) => void,
+    onSubmitCollection?: (form: any) => void
+    onChangeCollection?: (data: Partial<FormData>) => void
+    errors?: any
+}
+
+export default function CollectionsList(props: Props) {
+    const {collections, onOpenCollection, onSubmitCollection, onChangeCollection, errors} = props
     return (
-        <>
-            <h3 className="text-center mt-3 mb-5 ">My collections</h3>
-            <Row xs={1} sm={2} md={2} lg={3} xxl={4} className="g-4">
+            <Row  className="g-4">
                 {collections.map((collection: any) =>
                     <Col key={collection.id}>
-                        <Collection  collection={collection} onOpenCollection={(id) => onOpenCollection(id)}/>
+                            <CollectionCard
+                                collection={collection}
+                                onOpenCollection={(id) => onOpenCollection(id)}
+                                onSubmitCollection={onSubmitCollection as (form: any) => void}
+                                errors={errors}
+                                onChangeCollection={onChangeCollection as (data: Partial<FormData>) => void}
+                            />
                     </Col>
                 )}
             </Row>
-        </>
     )
 }

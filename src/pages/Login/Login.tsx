@@ -1,39 +1,46 @@
-import CustomContainer from "../CustomContainer/CustomContainer";
-import {Container, Form} from "react-bootstrap";
-import InputData from "./InputData";
-import {useState} from "react";
-import {useNavigate} from "react-router-dom";
-import {post} from "../helpers/http";
+import CustomContainer from "layout/CustomContainer/CustomContainer";
+import {Stack, Button, Container, Form, Alert} from "react-bootstrap";
+import InputData from "components/InputForm/InputForm";
+import {useContext, useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
+import {useMutation} from "react-query";
+import {login} from "api/auth";
+import {authContext} from "../../context/auth/authContext";
 
 const initialValues = {email: '', password: ''}
+type FormData = typeof initialValues
 
 export default function Login() {
-    const navigate = useNavigate()
-    const [values, setValues] = useState(initialValues);
-    const [err, setErr] = useState('');
-    const [errors, setErrors] = useState({})
+    const {onToken} = useContext(authContext)
 
-    const handleChange = (data: any) => {
-        if (err) setErr('')
+    const navigate = useNavigate()
+    const [values, setValues] = useState<FormData>(initialValues);
+    const [errors, setErrors] = useState({})
+    const {mutate, isLoading, reset, error} = useMutation(login, {
+        onSuccess({token}) {
+            onToken(token)
+            localStorage.setItem("token", token)
+            navigate('/')
+        }
+    })
+
+    const handleChange = (data: Partial<FormData>) => {
         setErrors(Object.keys(data).reduce((acc, k) => ({...acc, [k]: null}), {...errors}))
         setValues({...values, ...data})
+        if (error) reset()
     }
 
-    const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
-        e.preventDefault();
+    const handleSubmit = () => {
         if (!values.email || !values.password) {
             const errText = 'This field is required'
             setErrors({email: !values.email && errText, password: !values.password && errText})
             return;
         }
-        post('/login', values).then(function ({token}) {
-            localStorage.setItem("token", token)
-            navigate('/users')
-        }).catch(err => setErr(err))
+        mutate(values)
     }
     return <CustomContainer>
-        <Container>
-            <Form>
+        <Container className="p-5 mb-4 mt-4 rounded-3 bg-white">
+            <Form onSubmit={handleSubmit}>
                 <h1 className="text-center">Sign in</h1>
                 <InputData
                     required
@@ -55,6 +62,12 @@ export default function Login() {
                     onChange={handleChange}
                     label="Password"
                 />
+                {error ? <Alert variant="danger">{error.toString()}</Alert> : null}
+                <p className="text-center">Don't have an account? Register <Link to="/register">here</Link></p>
+                <Stack className="col-md-3 mx-auto justify-content-center" direction="horizontal" gap={{xs: 5}}>
+                    <Button className="justify-content-md-center" disabled={isLoading} onClick={handleSubmit}>Sign
+                        in</Button>
+                </Stack>
             </Form>
         </Container>
     </CustomContainer>

@@ -18,7 +18,6 @@ module.exports = {
             model: 'Collections', // name of Target model
             key: 'id', // key in Target model that we're referencing
           },
-          onUpdate: 'cascade',
           onDelete: 'cascade',
         }
     );

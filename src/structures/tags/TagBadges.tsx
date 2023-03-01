@@ -6,10 +6,10 @@ type Props = {
     bg?: string
 }
 
-export default function TagCloud(props: Props){
+export default function TagBadges(props: Props){
     const {tags, bg} = props
     return (
-        <div className="">
+        <div>
             {tags?.map(tag => <Badge pill bg={bg || "success"} key={tag.id}>{tag.name}</Badge>)}
         </div>
     )

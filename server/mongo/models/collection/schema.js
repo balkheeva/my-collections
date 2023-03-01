@@ -9,7 +9,6 @@ const CollectionSchema = new Schema({
         type: String,
         required: true
     },
-    userId: String,
     created: Date
 });
 

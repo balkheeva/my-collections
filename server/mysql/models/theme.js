@@ -10,10 +10,20 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.belongsToMany(models.Collection, {
+        as: 'themes',
+        through: 'CollectionThemes',
+        uniqueKey: 'collection_themes'
+      })
     }
   }
   Theme.init({
+    id: {
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+      type: DataTypes.UUID,
+    },
     name: DataTypes.STRING
   }, {
     sequelize,

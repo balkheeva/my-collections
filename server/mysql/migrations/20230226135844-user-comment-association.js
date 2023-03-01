@@ -9,6 +9,19 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
+    return queryInterface.addColumn(
+        'Comments', // name of Source model
+        'userId', // name of the key we're adding
+        {
+          type: Sequelize.UUID,
+          references: {
+            model: 'Users', // name of Target model
+            key: 'id', // key in Target model that we're referencing
+          },
+          onUpdate: 'cascade',
+          onDelete: 'cascade',
+        }
+    );
   },
 
   async down (queryInterface, Sequelize) {
@@ -18,5 +31,9 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
+    return queryInterface.removeColumn(
+        'Comments', // name of Source model
+        'userId' // key we want to remove
+    );
   }
 };

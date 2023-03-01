@@ -1,28 +1,13 @@
-const Sequelize = require("sequelize");
+const {Client} = require('@elastic/elasticsearch')
+const elasticClient = new Client({
+    node: 'http://localhost:9200',
 
-const sequelize = new Sequelize(
-    'mycollections',
-    'root',
-    'example',
-    {
-        host: '127.0.0.1',
-        port: 3307,
-        dialect: 'mysql',
-        dialectOptions: {
-        }
+    auth: {
+        username: 'elastic',
+        password: 'changeme'
     }
-);
+})
 
 
-async function connectMySQL(){
-    sequelize.authenticate().then(() => {
-        console.log('Connection has been established successfully.');
-    }).catch((error) => {
-        console.error('Unable to connect to the database: ', error);
-    });
-    await sequelize.sync({ force: true });
-    console.log("All models were synchronized successfully.");
-}
 
-module.exports.connectMySQL = connectMySQL
-module.exports.sequelize = sequelize
+module.exports = elasticClient

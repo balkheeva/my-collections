@@ -10,7 +10,6 @@ const ItemSchema = new Schema({
         type: String,
         index: true
     },
-    userId: String,
     created: Date
 });
 

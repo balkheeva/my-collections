@@ -1,13 +1,47 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    --bs-body-bg: #ecf2fe;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.dark {
+    --bs-body-bg: #171717;
+    --bs-light-rgb: 43, 48, 54;
+    --bs-body-color: #fff;
+    --bs-white-rgb: 43, 48, 54;
+    --bs-link-color: #fff;
+    --bs-link-hover-color: #fff;
+    --bs-border-color: #777777;
+    --bs-table-bg: #2b3036;
+}
+
+.dark .card {
+    --bs-card-bg: #2b3036;
+}
+
+.dark .form-control, .form-select {
+    background-color: #2b3036;
+    color: #fff
+}
+
+.dark .modal {
+    --bs-modal-bg: #2b3036
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }

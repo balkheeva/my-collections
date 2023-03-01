@@ -11,12 +11,21 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.User, {
+        foreignKey: 'userId',
+        onDelete: 'cascade',
+        hooks: true
+      })
     }
   }
   Token.init({
-    userId: DataTypes.STRING,
-    token: DataTypes.STRING,
-    userEmail: DataTypes.STRING
+    id: {
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+      type: DataTypes.UUID,
+    },
+    token: DataTypes.STRING(1234),
   }, {
     sequelize,
     modelName: 'Token',

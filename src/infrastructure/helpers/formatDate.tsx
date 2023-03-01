@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import calendar from 'dayjs/plugin/calendar'
-export function formatDate(date: string) {
-    const formattedDate = dayjs(date).calendar().toLowerCase()
+export function formatDate(date: string | undefined) {
+    const formattedDate = dayjs(date).format('DD.MM, H:MM')
     return formattedDate
 }

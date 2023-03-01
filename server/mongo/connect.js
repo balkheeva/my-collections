@@ -1,13 +1,10 @@
 const mongoose = require('mongoose')
-
 const RECONNECT_INTERVAL = 5000;
-
 
 mongoose.connection.on('error', function() {
   console.error(`---- MongoDB: Connection error! Retrying in ${RECONNECT_INTERVAL / 1000} sec.`);
   mongoose.disconnect();
 });
-
 
 mongoose.connection.on('disconnected', function() {
   console.log('---- MongoDB: Disconnected!');
@@ -15,7 +12,6 @@ mongoose.connection.on('disconnected', function() {
 });
 
 async function connectDb() {
-  //const {MONGO_DB} = process.env;
   const uri = "mongodb://root:example@localhost:27017";
   const options = {
     useNewUrlParser: true,
@@ -28,6 +24,5 @@ async function connectDb() {
     console.error('NOT CONNECTED! ', error);
   }
 }
-
 
 module.exports.connectDb = connectDb

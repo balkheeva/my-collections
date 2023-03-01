@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Tag extends Model {
     /**
@@ -11,14 +12,24 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsToMany(models.Item, {
+        as: 'tags',
+        through: 'ItemTags'
+      })
     }
   }
   Tag.init({
-    id: DataTypes.UUID,
+    id: {
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+      type: DataTypes.UUID,
+    },
     name: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Tag',
+
   });
   return Tag;
 };

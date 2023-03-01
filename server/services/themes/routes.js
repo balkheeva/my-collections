@@ -1,20 +1,23 @@
 const express = require('express')
 const route = express.Router()
 const Models = require('../../mysql/models')
-const Item = Models.Item
+const { Op } = require('sequelize')
+const Theme = Models.Theme
 
-route.post('/', async(req, res) => {
-    const items = await Item.findAll()
-    res.json(items)
+
+route.post('/', async (req, res) => {
+    const themes = await Theme.findAll()
+    res.json(themes)
 })
-
-route.post('/create/:id', async (req, res) => {
-    console.log(req.params.id)
-    const items = await Item.create({
-        name: req.body.name,
-        CollectionId: req.params.id
+route.post('/find', async (req, res) => {
+    const themes = await Theme.findAll({
+        where: {
+            name: {
+                [Op.startsWith]: req.body.name
+            }
+        }
     })
-    res.json(items)
+    res.json(themes)
 })
 
 module.exports = route

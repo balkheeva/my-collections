@@ -1,7 +1,10 @@
 import {post} from "../infrastructure/helpers/http";
 
-export type TItem = {id: string, name: string, tags: string[]}
+export type TThemes = {id: number, name: string}
 
-export function createItem(data: Record<string, unknown>) {
-    return post<TItem[]>(`/items/create/${data.collectionId}`, data)
+export function loadThemes() {
+    return post<TThemes[]>('/themes/')
+}
+export function findThemes(data: Record<string, unknown>) {
+    return post<TThemes[]>('/themes/find', data)
 }

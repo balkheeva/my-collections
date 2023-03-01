@@ -5,12 +5,9 @@ module.exports = {
     await queryInterface.createTable('ItemTags', {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      id: {
-        type: Sequelize.UUID
+        type: Sequelize.UUID,
       },
       itemId: {
         type: Sequelize.UUID

@@ -5,18 +5,13 @@ module.exports = {
     await queryInterface.createTable('Tokens', {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      userId: {
-        type: Sequelize.STRING
+        type: Sequelize.UUID,
       },
       token: {
-        type: Sequelize.STRING
-      },
-      userEmail: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(1234)
       },
       createdAt: {
         allowNull: false,

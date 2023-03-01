@@ -1,0 +1,41 @@
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    .overlay {
+      display: block;
+      background: rgba(225, 225, 225, .5);
+    }
+    .deleteBtn {
+      opacity: 1;
+    }
+  }
+}
+
+.deleteBtn {
+  opacity: 0;
+  position: absolute;
+  transition: opacity .35s ease;
+  svg {
+    display: block;
+    height: 40px;
+    width: 40px;
+  }
+}
+
+.image {
+  max-width: 100%;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(225, 225, 225, 0);
+  transition: background 0.5s ease;
+}
+

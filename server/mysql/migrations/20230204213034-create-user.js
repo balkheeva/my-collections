@@ -5,9 +5,9 @@ module.exports = {
     await queryInterface.createTable('Users', {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.UUID,
       },
       name: {
         allowNull: false,
@@ -21,6 +21,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      status: {
+        allowNull: false,
+        type: Sequelize.ENUM,
+        values: ['active', 'blocked']
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -33,6 +38,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.BOOLEAN
       },
+
     });
   },
   async down(queryInterface, Sequelize) {

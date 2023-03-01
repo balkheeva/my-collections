@@ -1,30 +1,35 @@
 const express = require('express')
 const route = express.Router()
-const Models = require('../../mysql/models')
-const {Op} = require("sequelize");
+const {User, Comment} = require('../../mysql/models')
 const {isAuthorized} = require("../auth/utils");
-const Tag = Models.Tag
+const {io} = require("../../createServer/createServer");
 
-route.post('/', async(req, res) => {
-    const tags = await Tag.findAll()
-    res.json(tags)
-})
-route.post('/create', isAuthorized, async(req, res) => {
-   const tag = await Tag.create({
-        name: req.body.label
+
+io.on('connection', (socket) => {
+    console.log('Socket connected!', socket.id)
+    socket.on('setRoom', async (roomId) => socket.join(roomId))
+    socket.on('disconnect', () => {
+        console.log('Socket disconnected!', socket.id)
     })
-    res.json(tag)
-})
-route.post('/find', async(req, res) => {
-    const tags = await Tag.findAll({
-        where: {
-            name: {
-                [Op.startsWith]: req.body.name
-            }
-        }
+});
+
+route.post('/create/:id', isAuthorized, async(req, res) => {
+    const comment = await Comment.create({
+        comment: req.body.comment,
+        userId: req.user.id,
+        itemId: req.body.itemId,
     })
-    res.json(tags)
+    const commentIncludeUser = await Comment.findByPk(comment.id, {
+        include: {model: User, as: 'author', attributes: ['id', 'name', 'email']},
+    })
+    io.to(req.body.itemId).emit('newComment', commentIncludeUser)
+    console.log('Comment sent!')
+    res.json(comment)
 })
 
 
+route.post('/:id', async(req, res) => {
+    const comments = await Comment.findAll({where: {itemId: req.params.id}, include: {model: User, as: 'author'}})
+    res.json(comments)
+})
 module.exports = route

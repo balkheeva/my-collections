@@ -5,9 +5,9 @@ module.exports = {
     await queryInterface.createTable('Items', {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.UUID,
       },
       name: {
         type: Sequelize.STRING
@@ -20,8 +20,16 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      CollectionId: {
-        type: Sequelize.INTEGER,
+      optionalFields: {
+        type: Sequelize.JSON,
+        allowNull: true,
+        defaultValue: '[]',
+        set(value) {
+          return this.setDataValue("optionalFields", JSON.stringify(value));
+        },
+        get() {
+          return JSON.parse(this.getDataValue("optionalFields") || '{}');
+        },
       }
     });
   },

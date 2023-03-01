@@ -11,9 +11,23 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+        this.hasOne(models.Token, {foreignKey: 'userId', onDelete: 'cascade'})
+        this.hasMany(models.Comment, {foreignKey: 'userId', onDelete: 'cascade', as: 'comments'})
+        this.hasMany(models.Collection, {
+          as: 'user',
+          foreignKey: 'authorId',
+          onDelete: 'cascade',
+          hooks: true
+        })
     }
   }
   User.init({
+    id: {
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+      type: DataTypes.UUID,
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false
@@ -31,6 +45,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: false,
     },
+    status: {
+      type: DataTypes.ENUM,
+      values: ['active', 'blocked']
+    },
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false
@@ -43,5 +61,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'User',
   });
+
   return User;
+
 };

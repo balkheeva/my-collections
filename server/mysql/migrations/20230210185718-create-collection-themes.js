@@ -5,12 +5,9 @@ module.exports = {
     await queryInterface.createTable('CollectionThemes', {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      id: {
-        type: Sequelize.UUID
+        type: Sequelize.UUID,
       },
       collectionId: {
         type: Sequelize.UUID
