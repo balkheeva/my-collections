@@ -42,7 +42,7 @@ route.post('/register', async (req, res) => {
     name: req.body.name,
     email: req.body.email,
     password: await bcrypt.hash(req.body.password, salt),
-    //adminrole: true
+    // adminrole: true
   });
   const parsedUser = user.toJSON();
   const token = jwt.sign(

@@ -1,8 +1,16 @@
-import { Context, ReactNode, createContext, useEffect, useState } from 'react';
+import { Context, ReactNode, createContext, useState } from 'react';
+import { IntlProvider } from 'react-intl';
 
 import locales from '../../constants/locales';
+import enMessages from '../../localizations/en.json';
+import ruMessages from '../../localizations/ru.json';
 
 type LocaleValue = string;
+
+const messages = {
+  [locales.RU]: ruMessages,
+  [locales.EN]: enMessages,
+};
 
 const localizationContext: Context<{
   currentLocale: LocaleValue;
@@ -25,7 +33,9 @@ export function LocaleProvider(props: { children: ReactNode }) {
   };
   return (
     <localizationContext.Provider value={value}>
-      {props.children}
+      <IntlProvider locale={currentLocale} messages={messages[currentLocale]}>
+        {props.children}
+      </IntlProvider>
     </localizationContext.Provider>
   );
 }

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Stack } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 import { useMutation } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -61,11 +61,20 @@ export default function Profile() {
 
   return (
     <>
-      {user && (
-        <Button variant="primary" onClick={handleShow}>
-          <FormattedMessage id="app.profile.btn" />
-        </Button>
-      )}
+      <Stack
+        direction="vertical"
+        className="mt-3 mb-5 justify-content-center align-items-center"
+      >
+        <h3 className="mb-3">
+          <FormattedMessage id="app.profile.title" />
+        </h3>
+        {user && (
+          <Button variant="primary" onClick={handleShow}>
+            <FormattedMessage id="app.profile.btn" />
+          </Button>
+        )}
+      </Stack>
+
       <ModalCollection
         initialValues={initialValues}
         onFormSubmit={handleSubmit}
@@ -73,9 +82,7 @@ export default function Profile() {
         show={show}
         errors={errors}
       />
-      <h3 className="text-center mt-3 mb-5 ">
-        <FormattedMessage id="app.profile.title" />
-      </h3>
+
       <CollectionsList
         collections={collections}
         onOpenCollection={handleOpenCollection}

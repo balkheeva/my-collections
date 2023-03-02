@@ -1,5 +1,4 @@
 {
-  "app.nav.logo": "My collections",
   "app.nav.dropdown.item1": "Мои коллекции",
   "app.nav.dropdown.item2": "Переключить тему",
   "app.nav.dropdown.item3": "Сменить пользователя",
@@ -10,7 +9,7 @@
 
   "app.home.title1": "Недавно добавленные айтемы",
   "app.home.title2": "Самые большие коллекции",
-  "app.home.title3": "Найти что-нибудь по тегам",
+  "app.home.title3": "Искать по тегам",
   "app.home.table.th1": "Коллекция",
   "app.home.table.th2": "Название",
   "app.home.table.th3": "Тэги",
@@ -69,11 +68,41 @@
   "app.admin.page.btn3": "Разблокировать",
   "app.admin.page.btn4": "Изменить роль",
   "app.admin.page.btn5": "Удалить",
+  "app.admin.table.th1": "id",
+  "app.admin.table.th2": "Имя",
+  "app.admin.table.th3": "Email",
+  "app.admin.table.th4": "Статус",
+  "app.admin.table.th5": "Создан",
+  "app.admin.table.th6": "Обновлен",
+  "app.admin.table.th7": "Роль",
 
   "app.notfound.page.title": "Страница не найдена",
   "app.notfound.page.btn": "Вернуться на главную",
 
   "app.search.title1": "Результаты поиска",
   "app.search.title2": "Ничего не найдено",
-  "app.search.text": "Проверьте правописание и повторите поиск"
+  "app.search.text": "Проверьте правописание и повторите поиск",
+
+  "app.theme.dark": "Темная тема",
+  "app.theme.light": "Светлая тема",
+
+  "app.login.title": "Вход",
+  "app.login.input.label1": "Email",
+  "app.login.input.placeholder1": "email@example.com",
+  "app.login.input.label2": "Пароль",
+  "app.login.input.placeholder2": "Пароль",
+  "app.login.input.text": "Нет аккаунта? Зарегистрируйтесь",
+  "app.login.input.link": "здесь",
+  "app.login.input.btn": "Войти",
+
+  "app.register.title": "Регистрация",
+  "app.register.input.label1": "Имя",
+  "app.register.input.placeholder1": "Имя",
+  "app.register.input.label2": "Email",
+  "app.register.input.placeholder2": "email@example.com",
+  "app.register.input.label3": "Пароль",
+  "app.register.input.placeholder3": "Пароль",
+  "app.register.input.btn": "Зарегистрироваться",
+  "app.register.input.text": "Уже зарегистрированы? Войдите",
+  "app.register.input.link": "здесь"
 }

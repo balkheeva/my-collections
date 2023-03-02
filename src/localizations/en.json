@@ -1,5 +1,4 @@
 {
-  "app.nav.logo": "My collections",
   "app.nav.dropdown.item1": "My collections",
   "app.nav.dropdown.item2": "Switch theme",
   "app.nav.dropdown.item3": "Impersonate",
@@ -69,11 +68,41 @@
   "app.admin.page.btn3": "Unblock",
   "app.admin.page.btn4": "Change role",
   "app.admin.page.btn5": "Delete",
+  "app.admin.table.th1": "id",
+  "app.admin.table.th2": "Name",
+  "app.admin.table.th3": "Email",
+  "app.admin.table.th4": "Status",
+  "app.admin.table.th5": "Created",
+  "app.admin.table.th6": "Updated",
+  "app.admin.table.th7": "Role",
 
   "app.notfound.page.title": "Sorry, the page is not found",
   "app.notfound.page.btn": "Go to Home page",
 
   "app.search.title1": "Search results",
   "app.search.title2": "Sorry, no results found",
-  "app.search.text": "Please try searching with another term"
+  "app.search.text": "Please try searching with another term",
+
+  "app.theme.dark": "Dark mode",
+  "app.theme.light": "Light mode",
+
+  "app.login.title": "Sign in",
+  "app.login.input.label1": "Email",
+  "app.login.input.placeholder1": "email@example.com",
+  "app.login.input.label2": "Password",
+  "app.login.input.placeholder2": "Password",
+  "app.login.input.text": "Don't have an account? Register",
+  "app.login.input.link": "here",
+  "app.login.input.btn": "Sign in",
+
+  "app.register.title": "Create an account",
+  "app.register.input.label1": "Name",
+  "app.register.input.placeholder1": "Name",
+  "app.register.input.label2": "Email",
+  "app.register.input.placeholder2": "email@example.com",
+  "app.register.input.label3": "Password",
+  "app.register.input.placeholder3": "Password",
+  "app.register.input.btn": "Register",
+  "app.register.input.text": "Already have an account? Sign in",
+  "app.register.input.link": "here"
 }

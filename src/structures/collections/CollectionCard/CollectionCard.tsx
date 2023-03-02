@@ -32,7 +32,7 @@ export default function CollectionCard(props: Props) {
   };
   return (
     <>
-      <Card style={{ width: '24rem' }}>
+      <Card>
         <ImageContainer>
           {
             <Card.Img

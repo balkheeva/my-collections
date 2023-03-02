@@ -21,9 +21,9 @@ export default function CollectionsList(props: Props) {
     errors,
   } = props;
   return (
-    <Row className="g-4">
+    <Row className="g-4 justify-content-center">
       {collections.map((collection: any) => (
-        <Col key={collection.id}>
+        <Col key={collection.id} lg={6} md={6} xl={4}>
           <CollectionCard
             collection={collection}
             onOpenCollection={(id) => onOpenCollection(id)}

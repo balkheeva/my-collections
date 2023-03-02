@@ -16,7 +16,7 @@ export default function ProfileInfo(props: {
   onLogOut: () => void;
 }) {
   const { user, onLogOut } = props;
-  const { theme, onToggleTheme } = useContext(themeContext);
+
   const handleDeimpersonate = () => {
     const adminToken = localStorage.getItem('adminToken') || '';
     localStorage.setItem('token', adminToken);
@@ -31,12 +31,12 @@ export default function ProfileInfo(props: {
       >
         <FormattedMessage id="app.nav.dropdown.item1" />
       </NavDropdown.Item>
-      <NavDropdown.Item
-        as="button"
-        onClick={() => onToggleTheme(theme ? '' : 'dark')}
-      >
-        <DarkThemeIcon /> <FormattedMessage id="app.nav.dropdown.item2" />
-      </NavDropdown.Item>
+      {/*<NavDropdown.Item*/}
+      {/*  as="button"*/}
+      {/*  onClick={() => onToggleTheme(theme ? '' : 'dark')}*/}
+      {/*>*/}
+      {/*  <DarkThemeIcon /> <FormattedMessage id="app.nav.dropdown.item2" />*/}
+      {/*</NavDropdown.Item>*/}
       {user.impersonatedBy && (
         <NavDropdown.Item as="button" onClick={handleDeimpersonate}>
           <ImpersonateIcon /> <FormattedMessage id="app.nav.dropdown.item3" />

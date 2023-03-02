@@ -87,13 +87,27 @@ export default function AdminPage() {
       <Table responsive className="p-3">
         <thead>
           <tr>
-            <th>id</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Status</th>
-            <th>Created</th>
-            <th>Updated</th>
-            <th>Role</th>
+            <th>
+              <FormattedMessage id="app.admin.table.th1" />
+            </th>
+            <th>
+              <FormattedMessage id="app.admin.table.th2" />
+            </th>
+            <th>
+              <FormattedMessage id="app.admin.table.th3" />
+            </th>
+            <th>
+              <FormattedMessage id="app.admin.table.th4" />
+            </th>
+            <th>
+              <FormattedMessage id="app.admin.table.th5" />
+            </th>
+            <th>
+              <FormattedMessage id="app.admin.table.th6" />
+            </th>
+            <th>
+              <FormattedMessage id="app.admin.table.th7" />
+            </th>
             <th></th>
           </tr>
         </thead>
@@ -119,7 +133,7 @@ export default function AdminPage() {
                         disabled={Boolean(currentUser?.impersonatedBy)}
                         onClick={() => handleImpersonateUser(user)}
                       >
-                        <ImpersonateIcon />
+                        <ImpersonateIcon />{' '}
                         <FormattedMessage id="app.admin.page.btn1" />
                       </Dropdown.Item>
                       <Dropdown.Item
@@ -135,14 +149,14 @@ export default function AdminPage() {
                         as="button"
                         onClick={() => handleChangeRole(user)}
                       >
-                        <ChangeIcon />
+                        <ChangeIcon />{' '}
                         <FormattedMessage id="app.admin.page.btn4" />
                       </Dropdown.Item>
                       <Dropdown.Item
                         as="button"
                         onClick={() => handleDeleteUser(user.id)}
                       >
-                        <DeleteIcon />
+                        <DeleteIcon />{' '}
                         <FormattedMessage id="app.admin.page.btn5" />
                       </Dropdown.Item>
                     </Dropdown.Menu>

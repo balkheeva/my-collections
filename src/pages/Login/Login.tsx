@@ -3,6 +3,7 @@ import InputData from 'components/InputForm/InputForm';
 import CustomContainer from 'layout/CustomContainer/CustomContainer';
 import { useContext, useState } from 'react';
 import { Alert, Button, Container, Form, Stack } from 'react-bootstrap';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { useMutation } from 'react-query';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -24,6 +25,8 @@ export default function Login() {
       navigate('/');
     },
   });
+
+  const intl = useIntl();
 
   const handleChange = (data: Partial<FormData>) => {
     setErrors(
@@ -50,30 +53,40 @@ export default function Login() {
     <CustomContainer>
       <Container className="p-5 mb-4 mt-4 rounded-3 bg-white">
         <Form onSubmit={handleSubmit}>
-          <h1 className="text-center">Sign in</h1>
+          <h1 className="text-center">
+            <FormattedMessage id="app.login.title" />
+          </h1>
           <InputData
             required
             name="email"
-            placeholder="email@example.com"
+            placeholder={intl.formatMessage({
+              id: 'app.login.input.placeholder1',
+            })}
             values={values}
             type="text"
-            label="Email"
+            label={intl.formatMessage({ id: 'app.login.input.label1' })}
             errors={errors}
             onChange={handleChange}
           />
           <InputData
             required
             name="password"
-            placeholder="Password"
+            placeholder={intl.formatMessage({
+              id: 'app.login.input.placeholder2',
+            })}
             values={values}
             type="password"
             errors={errors}
             onChange={handleChange}
-            label="Password"
+            label={intl.formatMessage({ id: 'app.login.input.label2' })}
           />
           {error ? <Alert variant="danger">{error.toString()}</Alert> : null}
           <p className="text-center">
-            Don't have an account? Register <Link to="/register">here</Link>
+            <FormattedMessage id="app.login.input.text" />{' '}
+            <Link to="/register">
+              {' '}
+              <FormattedMessage id="app.login.input.link" />
+            </Link>
           </p>
           <Stack
             className="col-md-3 mx-auto justify-content-center"
@@ -85,7 +98,7 @@ export default function Login() {
               disabled={isLoading}
               onClick={handleSubmit}
             >
-              Sign in
+              <FormattedMessage id="app.login.input.btn" />
             </Button>
           </Stack>
         </Form>

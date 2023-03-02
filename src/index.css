@@ -31,14 +31,31 @@ a:hover {
   --bs-card-bg: #2b3036;
 }
 
-.dark .form-control,
-.form-select {
+.dark .dropdown-menu {
+  --bs-dropdown-bg: #2b3036;
+  --bs-dropdown-link-color: #fff;
+  --bs-dropdown-link-hover-color: #fff;
+  --bs-dropdown-link-hover-bg: #2b3036;
+}
+
+.dark .form-select {
+  background-color: #2b3036;
+  color: #fff;
+}
+.dark .form-control {
   background-color: #2b3036;
   color: #fff;
 }
 
 .dark .modal {
   --bs-modal-bg: #2b3036;
+}
+.dark .navbar {
+  --bs-navbar-color: 43, 48, 54;
+  --bs-navbar-brand-color: 43, 48, 54;
+  --bs-navbar-brand-hover-color: 43, 48, 54;
+  --bs-navbar-hover-color: 43, 48, 54;
+  --bs-navbar-active-color: 43, 48, 54;
 }
 
 code {
