@@ -1,5 +1,5 @@
 'use strict';
-const {DataTypes} = require("sequelize");
+const { DataTypes } = require('sequelize');
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -7,40 +7,40 @@ module.exports = {
       id: {
         primaryKey: true,
         defaultValue: Sequelize.UUIDV4,
-        type: Sequelize.UUID
+        type: Sequelize.UUID,
       },
       name: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       description: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       image: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       optionalFields: {
         type: Sequelize.JSON,
         allowNull: true,
         defaultValue: '[]',
         set(value) {
-          return this.setDataValue("optionalFields", JSON.stringify(value));
+          return this.setDataValue('optionalFields', JSON.stringify(value));
         },
         get() {
-          return JSON.parse(this.getDataValue("optionalFields") || '{}');
+          return JSON.parse(this.getDataValue('optionalFields') || '{}');
         },
       },
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Collections');
-  }
+  },
 };

@@ -11,6 +11,7 @@
     "server:prod": "NODE_ENV=production pm2 start server/index.js",
     "server:restart": "pm2 restart index",
     "server:delete": "pm2 delete index",
+    "prettify": "npx prettier --write .",
     "deploy": "gh-pages -d build"
   },
   "dependencies": {
@@ -49,8 +50,10 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
+    "prettier": "^2.8.4",
     "sass": "^1.56.1",
     "sass-loader": "^13.2.0"
   },

@@ -1,7 +1,5 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Tag extends Model {
@@ -14,22 +12,24 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       this.belongsToMany(models.Item, {
         as: 'tags',
-        through: 'ItemTags'
-      })
+        through: 'ItemTags',
+      });
     }
   }
-  Tag.init({
-    id: {
-      allowNull: false,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true,
-      type: DataTypes.UUID,
+  Tag.init(
+    {
+      id: {
+        allowNull: false,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true,
+        type: DataTypes.UUID,
+      },
+      name: DataTypes.STRING,
     },
-    name: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Tag',
-
-  });
+    {
+      sequelize,
+      modelName: 'Tag',
+    },
+  );
   return Tag;
 };

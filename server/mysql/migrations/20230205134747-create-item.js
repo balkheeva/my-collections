@@ -10,30 +10,30 @@ module.exports = {
         type: Sequelize.UUID,
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       optionalFields: {
         type: Sequelize.JSON,
         allowNull: true,
         defaultValue: '[]',
         set(value) {
-          return this.setDataValue("optionalFields", JSON.stringify(value));
+          return this.setDataValue('optionalFields', JSON.stringify(value));
         },
         get() {
-          return JSON.parse(this.getDataValue("optionalFields") || '{}');
+          return JSON.parse(this.getDataValue('optionalFields') || '{}');
         },
-      }
+      },
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Items');
-  }
+  },
 };

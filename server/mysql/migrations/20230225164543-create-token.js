@@ -11,19 +11,19 @@ module.exports = {
       },
       token: {
         allowNull: false,
-        type: Sequelize.STRING(1234)
+        type: Sequelize.STRING(1234),
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Tokens');
-  }
+  },
 };

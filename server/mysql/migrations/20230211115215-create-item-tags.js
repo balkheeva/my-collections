@@ -10,22 +10,22 @@ module.exports = {
         type: Sequelize.UUID,
       },
       itemId: {
-        type: Sequelize.UUID
+        type: Sequelize.UUID,
       },
       tagId: {
-        type: Sequelize.UUID
+        type: Sequelize.UUID,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('ItemTags');
-  }
+  },
 };

@@ -1,7 +1,5 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Theme extends Model {
     /**
@@ -13,21 +11,24 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsToMany(models.Collection, {
         as: 'themes',
         through: 'CollectionThemes',
-        uniqueKey: 'collection_themes'
-      })
+        uniqueKey: 'collection_themes',
+      });
     }
   }
-  Theme.init({
-    id: {
-      allowNull: false,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true,
-      type: DataTypes.UUID,
+  Theme.init(
+    {
+      id: {
+        allowNull: false,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true,
+        type: DataTypes.UUID,
+      },
+      name: DataTypes.STRING,
     },
-    name: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Theme',
-  });
+    {
+      sequelize,
+      modelName: 'Theme',
+    },
+  );
   return Theme;
 };

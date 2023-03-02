@@ -1,40 +1,51 @@
-import NavigationBar from "./NavigationBar/NavigationBar";
-import {ReactNode, useCallback, useEffect, useState} from "react";
-import {Container} from "react-bootstrap";
-import {User} from "../context/auth/authContext";
-import {search} from "../api/search";
-import {useNavigate} from "react-router-dom";
+import { ReactNode, useCallback, useEffect, useState } from 'react';
+import { Container } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
-export default function Layout(props: {children: ReactNode, user?: User, onLogOut?: () => void}){
-    const {children, user, onLogOut} = props
-    const [searchValue, setSearchValue] = useState(new URLSearchParams(window.location.search).get('query') || '')
-    const [foundData, setFoundData] = useState([])
-    const navigate = useNavigate()
+import { search } from '../api/search';
+import { User } from '../context/auth/authContext';
+import NavigationBar from './NavigationBar/NavigationBar';
 
-    const handleChangeSearch = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchValue(e.target.value)
-    }, [])
+export default function Layout(props: {
+  children: ReactNode;
+  user?: User;
+  onLogOut?: () => void;
+}) {
+  const { children, user, onLogOut } = props;
+  const [searchValue, setSearchValue] = useState(
+    new URLSearchParams(window.location.search).get('query') || '',
+  );
+  const [foundData, setFoundData] = useState([]);
+  const navigate = useNavigate();
 
-    const handleSubmitSearch = (query: string) => {
-        navigate(`/search/?query=${query}`)
-    }
+  const handleChangeSearch = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchValue(e.target.value);
+    },
+    [],
+  );
 
-    useEffect(() => {
-        search(searchValue).then((data: any) => {
-            setFoundData(data)
-        })
-    }, [searchValue])
+  const handleSubmitSearch = (query: string) => {
+    navigate(`/search/?query=${query}`);
+  };
 
-    return <div>
-        <NavigationBar
-            user={user}
-            onLogOut={onLogOut}
-            onSearchChange={handleChangeSearch}
-            onSearchSubmit={handleSubmitSearch}
-            searchValue={searchValue}
-            foundData={foundData}/>
-        <Container className="mt-5 mb-5 ">
-            {children}
-        </Container>
+  useEffect(() => {
+    search(searchValue).then((data: any) => {
+      setFoundData(data);
+    });
+  }, [searchValue]);
+
+  return (
+    <div>
+      <NavigationBar
+        user={user}
+        onLogOut={onLogOut}
+        onSearchChange={handleChangeSearch}
+        onSearchSubmit={handleSubmitSearch}
+        searchValue={searchValue}
+        foundData={foundData}
+      />
+      <Container className="mt-5 mb-5 ">{children}</Container>
     </div>
+  );
 }

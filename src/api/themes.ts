@@ -1,10 +1,10 @@
-import {post} from "../infrastructure/helpers/http";
+import { post } from '../infrastructure/helpers/http';
 
-export type TThemes = {id: number, name: string}
+export type TThemes = { id: number; name: string };
 
 export function loadThemes() {
-    return post<TThemes[]>('/themes/')
+  return post<TThemes[]>('/themes/');
 }
 export function findThemes(data: Record<string, unknown>) {
-    return post<TThemes[]>('/themes/find', data)
+  return post<TThemes[]>('/themes/find', data);
 }

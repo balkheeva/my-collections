@@ -1,12 +1,11 @@
 .like {
-    padding: 0!important;
-    svg {
-      fill: red;
-      transition: width .35s, height .35s ease;
-      &:hover {
-        width: 20px;
-        height: 20px;
-      }
+  padding: 0 !important;
+  svg {
+    fill: red;
+    transition: width 0.35s, height 0.35s ease;
+    &:hover {
+      width: 20px;
+      height: 20px;
     }
-
+  }
 }
