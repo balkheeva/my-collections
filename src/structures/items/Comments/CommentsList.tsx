@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Button, Stack } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
 
 import { TComment } from '../../../api/comments';
+import { localizationContext } from '../../../context/localization/localizationContext';
 import { formatDate } from '../../../infrastructure/helpers/formatDate';
 
 type Props = {
@@ -11,6 +13,7 @@ export default function CommentsList(props: Props) {
   const { comments } = props;
   const [list, setList] = useState<TComment[]>([]);
   const sliced = comments.slice(0, 3);
+  const { currentLocale } = useContext(localizationContext);
 
   useEffect(() => {
     setList(sliced);
@@ -42,9 +45,23 @@ export default function CommentsList(props: Props) {
         ))}
       {showButton && (
         <Button variant="outline-primary" onClick={handleShowAllComments}>
-          See all {comments.length} comments
+          <FormattedMessage id="app.item.page.title" /> {comments.length}{' '}
+          {currentLocale === 'ru'
+            ? declOfNum(comments.length, [
+                'комментарий',
+                'комментария',
+                'комментариев',
+              ])
+            : 'comments'}
         </Button>
       )}
     </div>
   );
+}
+export function declOfNum(number: number, words: Array<string>) {
+  return words[
+    number % 100 > 4 && number % 100 < 20
+      ? 2
+      : [2, 0, 1, 1, 1, 2][number % 10 < 5 ? Math.abs(number) % 10 : 5]
+  ];
 }

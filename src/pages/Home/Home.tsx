@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Stack } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 
 import { TCollection, loadAllCollections } from '../../api/collections';
@@ -27,7 +28,9 @@ export default function Home() {
       {items.length > 0 && <RecentlyAddedItems items={items} />}
       {collections.length > 0 && (
         <div>
-          <h3 className="mb-4 mt-5 text-center">Recently added collections</h3>
+          <h3 className="mb-4 mt-5 text-center">
+            <FormattedMessage id="app.home.title2" />
+          </h3>
           <CollectionsList
             collections={collections}
             onOpenCollection={handleOpenCollection}
@@ -36,7 +39,9 @@ export default function Home() {
       )}
 
       <Stack className="mb-5 align-items-center">
-        <h3 className="mb-4 mt-5 text-center">Try to find something by tags</h3>
+        <h3 className="mb-4 mt-5 text-center">
+          <FormattedMessage id="app.home.title3" />
+        </h3>
         <TagCloud tags={tags} />
       </Stack>
     </>

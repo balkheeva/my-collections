@@ -3,6 +3,7 @@ import calendar from 'dayjs/plugin/calendar';
 import { useState } from 'react';
 import { Button, Stack } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
+import { FormattedMessage } from 'react-intl';
 import ReactMarkdown from 'react-markdown';
 
 import { TCollection } from '../../../api/collections';
@@ -44,17 +45,23 @@ export default function CollectionCard(props: Props) {
           <Card.Title>{collection.name}</Card.Title>
           <ReactMarkdown>{collection.description}</ReactMarkdown>
           <Card.Text>
-            <small className="text-muted">Theme: </small>
+            <small className="text-muted">
+              <FormattedMessage id="app.collection.card.text1" />:{' '}
+            </small>
             {collection.themes.length !== 0
               ? collection.themes.map((theme) => theme.name).join(', ')
               : '(No theme)'}
           </Card.Text>
           <Card.Text>
-            <small className="text-muted ">Author: </small>
+            <small className="text-muted ">
+              <FormattedMessage id="app.collection.card.text2" />:{' '}
+            </small>
             {collection.author.name}
           </Card.Text>
           <Card.Text>
-            <small className="text-muted">Items: </small>
+            <small className="text-muted">
+              <FormattedMessage id="app.collection.card.text3" />:{' '}
+            </small>
             {collection.items.length}
           </Card.Text>
 
@@ -63,19 +70,21 @@ export default function CollectionCard(props: Props) {
               variant="primary"
               onClick={() => onOpenCollection(collection.id)}
             >
-              Learn more
+              <FormattedMessage id="app.collection.card.btn" />
             </Button>
           </Stack>
         </Card.Body>
         <Card.Footer>
           <Card.Text>
             <small className="text-muted">
-              Created {formatDate(collection.createdAt)}
+              <FormattedMessage id="app.collection.card.text4" />{' '}
+              {formatDate(collection.createdAt)}
             </small>
           </Card.Text>
           <Card.Text>
             <small className="text-muted">
-              Updated {formatDate(collection.updatedAt)}
+              <FormattedMessage id="app.collection.card.text5" />{' '}
+              {formatDate(collection.updatedAt)}
             </small>
           </Card.Text>
         </Card.Footer>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Container, Table } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 
 import { TItem, loadItems } from '../../../api/items';
@@ -14,17 +15,31 @@ export default function RecentlyAddedItems(props: Props) {
   const { items } = props;
   return (
     <>
-      <h3 className="text-center">Recently added items</h3>
+      <h3 className="text-center">
+        <FormattedMessage id="app.home.title1" />
+      </h3>
       <Container className="rounded-3 shadow-sm p-3 mt-3 bg-light">
         <Table responsive className="p-3">
           <thead>
             <tr>
-              <th>Collection</th>
-              <th>Name</th>
-              <th>Tags</th>
-              <th>Created</th>
-              <th>Updated</th>
-              <th>Author</th>
+              <th>
+                <FormattedMessage id="app.home.table.th1" />
+              </th>
+              <th>
+                <FormattedMessage id="app.home.table.th2" />
+              </th>
+              <th>
+                <FormattedMessage id="app.home.table.th3" />
+              </th>
+              <th>
+                <FormattedMessage id="app.home.table.th4" />
+              </th>
+              <th>
+                <FormattedMessage id="app.home.table.th5" />
+              </th>
+              <th>
+                <FormattedMessage id="app.home.table.th6" />
+              </th>
             </tr>
           </thead>
           <tbody>

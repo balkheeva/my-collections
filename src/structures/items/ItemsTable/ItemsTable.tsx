@@ -1,4 +1,5 @@
 import { Table } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
 
 import { TCollection } from '../../../api/collections';
 import { TItem } from '../../../api/items';
@@ -19,15 +20,23 @@ export default function ItemsTable(props: Props) {
     <Table responsive>
       <thead>
         <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Tags</th>
+          <th>
+            <FormattedMessage id="app.items.table.th1" />
+          </th>
+          <th>
+            <FormattedMessage id="app.items.table.th2" />
+          </th>
+          <th>
+            <FormattedMessage id="app.items.table.th3" />
+          </th>
           {optionalFields.map((field, index) => (
             <th key={index} className="text-nowrap">
               {field.name}
             </th>
           ))}
-          <th>Created</th>
+          <th>
+            <FormattedMessage id="app.items.table.th4" />
+          </th>
           {isAuthor && <th></th>}
         </tr>
       </thead>

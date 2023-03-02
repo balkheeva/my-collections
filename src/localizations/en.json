@@ -1,0 +1,79 @@
+{
+  "app.nav.logo": "My collections",
+  "app.nav.dropdown.item1": "My collections",
+  "app.nav.dropdown.item2": "Switch theme",
+  "app.nav.dropdown.item3": "Impersonate",
+  "app.nav.dropdown.item4": "Users mgmt",
+  "app.nav.dropdown.item5": "Logout",
+  "app.nav.input.btn": "Search",
+  "app.nav.input.placeholder": "Search",
+
+  "app.home.title1": "Recently added items",
+  "app.home.title2": "Largest collections",
+  "app.home.title3": "Try to find something by tags",
+  "app.home.table.th1": "Collection",
+  "app.home.table.th2": "Name",
+  "app.home.table.th3": "Tags",
+  "app.home.table.th4": "Created",
+  "app.home.table.th5": "Updated",
+  "app.home.table.th6": "Author",
+
+  "app.profile.btn": "Create new collection",
+  "app.profile.title": "My collections",
+
+  "app.collection.card.text1": "Theme",
+  "app.collection.card.text2": "Author",
+  "app.collection.card.text3": "Items",
+  "app.collection.card.text4": "Created",
+  "app.collection.card.text5": "Updated",
+  "app.collection.card.btn": "Learn more",
+
+  "app.collection.modal.title11": "Create",
+  "app.collection.modal.title12": "collection",
+  "app.collection.modal.title22": "Edit",
+  "app.collection.modal.text1": "Themes",
+  "app.collection.modal.text2": "Name",
+  "app.collection.modal.text3": "Description",
+
+  "app.collection.dropdown.item1": "Edit collection",
+  "app.collection.dropdown.item2": "Delete collection",
+
+  "app.collection.page.btn1": "Create an item",
+  "app.collection.page.btn2": "Add fields",
+
+  "app.items.table.th1": "id",
+  "app.items.table.th2": "Name",
+  "app.items.table.th3": "Tags",
+  "app.items.table.th4": "Created",
+
+  "app.items.dropdown1.item1": "Oldest first",
+  "app.items.dropdown1.item2": "Newest first",
+  "app.items.dropdown2": "Filter by",
+
+  "app.items.modal.title": "Name",
+  "app.items.modal.text1": "Tags",
+  "app.items.modal.btn1": "Create",
+  "app.items.modal.btn2": "Edit",
+  "app.items.modal.dropdown.item1": "Not choosen",
+  "app.items.modal.dropdown.item2": "Yes",
+  "app.items.modal.dropdown.item3": "No",
+
+  "app.item.page.text1": "Created",
+  "app.item.page.text2": "Author",
+  "app.item.page.title": "See all",
+  "app.item.page.placeholder": "Leave a comment",
+  "app.item.page.button": "Send",
+
+  "app.admin.page.btn1": "Impersonate",
+  "app.admin.page.btn2": "Block",
+  "app.admin.page.btn3": "Unblock",
+  "app.admin.page.btn4": "Change role",
+  "app.admin.page.btn5": "Delete",
+
+  "app.notfound.page.title": "Sorry, the page is not found",
+  "app.notfound.page.btn": "Go to Home page",
+
+  "app.search.title1": "Search results",
+  "app.search.title2": "Sorry, no results found",
+  "app.search.text": "Please try searching with another term"
+}

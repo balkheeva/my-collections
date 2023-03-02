@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { Col, Row, Stack } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
@@ -7,9 +8,12 @@ import { io } from 'socket.io-client';
 import { TComment, createComment } from '../../api/comments';
 import { TItem, getItem, likeItem } from '../../api/items';
 import LikeBar from '../../components/LikeBar/LikeBar';
+import { localizationContext } from '../../context/localization/localizationContext';
 import { formatDate } from '../../infrastructure/helpers/formatDate';
 import CommentsInput from '../../structures/items/Comments/CommentsInput';
-import CommentsList from '../../structures/items/Comments/CommentsList';
+import CommentsList, {
+  declOfNum,
+} from '../../structures/items/Comments/CommentsList';
 import ItemOptionalFieldsList from '../../structures/items/ItemOptionalFieldsList/ItemOptionalFieldsList';
 import TagCloud from '../../structures/tags/TagBadges';
 
@@ -30,6 +34,8 @@ export default function ItemPage() {
     onSuccess: handleInvalidate,
   });
   const likesMutation = useMutation(likeItem, { onSuccess: handleInvalidate });
+
+  const { currentLocale } = useContext(localizationContext);
 
   const handleSubmitComment = (data: any) => {
     commentMutationCreate.mutate(data);
@@ -59,14 +65,27 @@ export default function ItemPage() {
         <ItemOptionalFieldsList fields={optionalFields} item={item} />
         <LikeBar item={item} onLike={handleLikeItem} />
         <Stack direction="horizontal" gap={2} className="text-muted mb-5">
-          <small>Created {formatDate(item?.createdAt)}</small>
           <small>
-            Author: <strong>{item?.Collection.author.name}</strong>{' '}
+            <FormattedMessage id="app.item.page.text1" />{' '}
+            {formatDate(item?.createdAt)}
+          </small>
+          <small>
+            <FormattedMessage id="app.item.page.text2" />:{' '}
+            <strong>{item?.Collection.author.name}</strong>{' '}
           </small>
         </Stack>
         <hr />
         <h5>
-          <strong>{comments.length} comments</strong>
+          <strong>
+            {comments.length}{' '}
+            {currentLocale === 'ru'
+              ? declOfNum(comments.length, [
+                  'комментарий',
+                  'комментария',
+                  'комментариев',
+                ])
+              : 'comments'}
+          </strong>
         </h5>
         <CommentsInput onSubmitComment={handleSubmitComment} item={item} />
         <CommentsList comments={comments} />

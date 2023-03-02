@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { Button, NavDropdown, Stack } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 
 import DarkThemeIcon from '../../components/icons/DarkThemeIcon';
@@ -28,27 +29,27 @@ export default function ProfileInfo(props: {
         href={`/profile/${user.id}`}
         className="text-decoration-none"
       >
-        My collections
+        <FormattedMessage id="app.nav.dropdown.item1" />
       </NavDropdown.Item>
-      {user.adminrole && (
-        <NavDropdown.Item href="/admin">
-          <UsersIcon /> Users mgmt
-        </NavDropdown.Item>
-      )}
-      {user.impersonatedBy && (
-        <NavDropdown.Item as="button" onClick={handleDeimpersonate}>
-          <ImpersonateIcon /> Deimpersonate
-        </NavDropdown.Item>
-      )}
       <NavDropdown.Item
         as="button"
         onClick={() => onToggleTheme(theme ? '' : 'dark')}
       >
-        <DarkThemeIcon /> Switch theme
+        <DarkThemeIcon /> <FormattedMessage id="app.nav.dropdown.item2" />
       </NavDropdown.Item>
+      {user.impersonatedBy && (
+        <NavDropdown.Item as="button" onClick={handleDeimpersonate}>
+          <ImpersonateIcon /> <FormattedMessage id="app.nav.dropdown.item3" />
+        </NavDropdown.Item>
+      )}
+      {user.adminrole && (
+        <NavDropdown.Item href="/admin">
+          <UsersIcon /> <FormattedMessage id="app.nav.dropdown.item4" />
+        </NavDropdown.Item>
+      )}
       <NavDropdown.Divider />
       <NavDropdown.Item as="button" onClick={onLogOut} title="Log out">
-        <LogoutIcon /> Logout
+        <LogoutIcon /> <FormattedMessage id="app.nav.dropdown.item5" />
       </NavDropdown.Item>
     </NavDropdown>
   );

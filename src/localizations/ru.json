@@ -1,0 +1,79 @@
+{
+  "app.nav.logo": "My collections",
+  "app.nav.dropdown.item1": "Мои коллекции",
+  "app.nav.dropdown.item2": "Переключить тему",
+  "app.nav.dropdown.item3": "Сменить пользователя",
+  "app.nav.dropdown.item4": "Пользователи",
+  "app.nav.dropdown.item5": "Выйти",
+  "app.nav.input.btn": "Поиск",
+  "app.nav.input.placeholder": "Поиск",
+
+  "app.home.title1": "Недавно добавленные айтемы",
+  "app.home.title2": "Самые большие коллекции",
+  "app.home.title3": "Найти что-нибудь по тегам",
+  "app.home.table.th1": "Коллекция",
+  "app.home.table.th2": "Название",
+  "app.home.table.th3": "Тэги",
+  "app.home.table.th4": "Создано",
+  "app.home.table.th5": "Обновлено",
+  "app.home.table.th6": "Автор",
+
+  "app.profile.btn": "Создать коллекцию",
+  "app.profile.title": "Мои коллекции",
+
+  "app.collection.card.text1": "Тема",
+  "app.collection.card.text2": "Автор",
+  "app.collection.card.text3": "Айтемы",
+  "app.collection.card.text4": "Создано",
+  "app.collection.card.text5": "Обновлено",
+  "app.collection.card.btn": "Узнать больше",
+
+  "app.collection.dropdown.item1": "Редактировать коллекцию",
+  "app.collection.dropdown.item2": "Удалить коллекцию",
+
+  "app.collection.modal.title11": "Создать",
+  "app.collection.modal.title12": "коллекцию",
+  "app.collection.modal.title22": "Редактировать",
+  "app.collection.modal.text1": "Тема",
+  "app.collection.modal.text2": "Название",
+  "app.collection.modal.text3": "Описание",
+
+  "app.collection.page.btn1": "Создать айтем",
+  "app.collection.page.btn2": "Добавить поля",
+
+  "app.items.table.th1": "id",
+  "app.items.table.th2": "Название",
+  "app.items.table.th3": "Тэги",
+  "app.items.table.th4": "Создан",
+
+  "app.items.dropdown1.item1": "Сначала старые",
+  "app.items.dropdown1.item2": "Сначала новые",
+  "app.items.dropdown2": "Фильтр",
+
+  "app.items.modal.title": "Название",
+  "app.items.modal.text1": "Тэги",
+  "app.items.modal.btn1": "Создать",
+  "app.items.modal.btn2": "Сохранить",
+  "app.items.modal.dropdown.item1": "Не выбрано",
+  "app.items.modal.dropdown.item2": "Да",
+  "app.items.modal.dropdown.item3": "Нет",
+
+  "app.item.page.text1": "Создан",
+  "app.item.page.text2": "Автор",
+  "app.item.page.title": "Смотреть все",
+  "app.item.page.placeholder": "Оставить комментарий",
+  "app.item.page.button": "Отправить",
+
+  "app.admin.page.btn1": "Войти под пользователем",
+  "app.admin.page.btn2": "Заблокировать",
+  "app.admin.page.btn3": "Разблокировать",
+  "app.admin.page.btn4": "Изменить роль",
+  "app.admin.page.btn5": "Удалить",
+
+  "app.notfound.page.title": "Страница не найдена",
+  "app.notfound.page.btn": "Вернуться на главную",
+
+  "app.search.title1": "Результаты поиска",
+  "app.search.title2": "Ничего не найдено",
+  "app.search.text": "Проверьте правописание и повторите поиск"
+}

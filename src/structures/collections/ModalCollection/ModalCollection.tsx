@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Button, Form, Image, Modal } from 'react-bootstrap';
+import { useIntl } from 'react-intl';
 import ReactMarkdown from 'react-markdown';
 import { UploadDropzone } from 'react-uploader';
 import { Uploader } from 'uploader';
@@ -29,6 +30,7 @@ export default function ModalCollection(props: Props) {
     image,
     items,
   });
+  const intl = useIntl();
   const mapTheme = (theme: TThemes) => ({ value: theme.id, label: theme.name });
   const [showDropDown, setShowDropDown] = useState(false);
   const handleChange = (data: any) => {
@@ -69,7 +71,12 @@ export default function ModalCollection(props: Props) {
   return (
     <Modal show={show} onHide={onClose}>
       <Modal.Header closeButton>
-        <Modal.Title>{id ? 'Edit' : 'Create'} collection</Modal.Title>
+        <Modal.Title>
+          {id
+            ? intl.formatMessage({ id: 'app.collection.modal.title22' })
+            : intl.formatMessage({ id: 'app.collection.modal.title11' })}{' '}
+          {intl.formatMessage({ id: 'app.collection.modal.title12' })}
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
@@ -93,22 +100,26 @@ export default function ModalCollection(props: Props) {
             values={values.themes?.map(mapTheme)}
             onChange={handleChangeTheme}
             onLoadItems={handleLoadThemes}
-            title="Themes"
+            title={intl.formatMessage({ id: 'app.collection.modal.text1' })}
           />
           <InputForm
             name="name"
-            placeholder="Name"
+            placeholder={intl.formatMessage({
+              id: 'app.collection.modal.text2',
+            })}
             type="text"
-            label="Name"
+            label={intl.formatMessage({ id: 'app.collection.modal.text2' })}
             values={values}
             errors={errors}
             onChange={handleChange}
           />
           <InputForm
             name="description"
-            placeholder="description"
+            placeholder={intl.formatMessage({
+              id: 'app.collection.modal.text3',
+            })}
             as="textarea"
-            label="Description"
+            label={intl.formatMessage({ id: 'app.collection.modal.text3' })}
             values={values}
             errors={errors}
             onChange={handleChange}
@@ -123,7 +134,9 @@ export default function ModalCollection(props: Props) {
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={() => onFormSubmit(values)}>
-          {id ? 'Edit' : 'Create'}
+          {id
+            ? intl.formatMessage({ id: 'app.collection.modal.title11' })
+            : intl.formatMessage({ id: 'app.collection.modal.title22' })}
         </Button>
       </Modal.Footer>
     </Modal>

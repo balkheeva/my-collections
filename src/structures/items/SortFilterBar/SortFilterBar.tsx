@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button, Dropdown, Form, Stack } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
 
 import { TCollection } from '../../../api/collections';
 import { TItem } from '../../../api/items';
@@ -13,8 +14,8 @@ type Props = {
 };
 
 const sortItems = [
-  { value: 'asc', label: 'Oldest first' },
-  { value: 'desc', label: 'Newest first' },
+  { value: 'asc', label: 'app.items.dropdown1.item1' },
+  { value: 'desc', label: 'app.items.dropdown1.item2' },
 ] as const;
 
 export default function SortFilterBar(props: Props) {
@@ -34,9 +35,11 @@ export default function SortFilterBar(props: Props) {
   };
 
   return (
-    <Stack direction="horizontal" gap={3} className="align-items-start">
+    <Stack direction="horizontal" gap={3} className="align-items-start mb-3">
       <Dropdown>
-        <Dropdown.Toggle variant="outline-primary">{sortType}</Dropdown.Toggle>
+        <Dropdown.Toggle variant="outline-primary">
+          <FormattedMessage id={sortType} />
+        </Dropdown.Toggle>
         <Dropdown.Menu>
           {sortItems.map((item) => (
             <Dropdown.Item
@@ -44,14 +47,16 @@ export default function SortFilterBar(props: Props) {
               key={item.value}
               onClick={() => onSortBy(item.value)}
             >
-              {item.label}
+              <FormattedMessage id={item.label} />
             </Dropdown.Item>
           ))}
         </Dropdown.Menu>
       </Dropdown>
 
       <Dropdown>
-        <Dropdown.Toggle variant="outline-primary">Filter by</Dropdown.Toggle>
+        <Dropdown.Toggle variant="outline-primary">
+          <FormattedMessage id="app.items.dropdown2" />
+        </Dropdown.Toggle>
         <Dropdown.Menu>
           {fieldsForFilter.map((field: any) => (
             <Dropdown.Item

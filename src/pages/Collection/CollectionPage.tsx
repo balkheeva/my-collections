@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 import { Button, Col, Image, Row, Stack } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
 import ReactMarkdown from 'react-markdown';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -138,19 +139,29 @@ export default function CollectionPage() {
           <ReactMarkdown>{collection.description}</ReactMarkdown>
           <Stack className="mb-4">
             <small>
-              Themes: {collection.themes.map((theme) => theme.name).join(', ')}
+              <FormattedMessage id="app.collection.card.text1" />:{' '}
+              {collection.themes.map((theme) => theme.name).join(', ')}
             </small>
-            <small>Author: {collection.author.name}</small>
-            <small>Created {formatDate(collection.createdAt)}</small>
-            <small>Updated {formatDate(collection.updatedAt)}</small>
+            <small>
+              <FormattedMessage id="app.collection.card.text2" />:{' '}
+              {collection.author.name}
+            </small>
+            <small>
+              <FormattedMessage id="app.collection.card.text4" />{' '}
+              {formatDate(collection.createdAt)}
+            </small>
+            <small>
+              <FormattedMessage id="app.collection.card.text5" />{' '}
+              {formatDate(collection.updatedAt)}
+            </small>
           </Stack>
           {isAuthor && (
             <Stack direction="horizontal" gap={3}>
               <Button variant="primary" onClick={() => setShowModalItem(true)}>
-                Create new item
+                <FormattedMessage id="app.collection.page.btn1" />
               </Button>
               <Button onClick={() => setShowModalFields(true)}>
-                Add fields
+                <FormattedMessage id="app.collection.page.btn2" />
               </Button>
             </Stack>
           )}

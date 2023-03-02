@@ -14,16 +14,23 @@ export default function TagCloud(props: Props) {
     navigate(`/search/?query=${query}`);
   };
   return (
-    <Stack direction="horizontal" gap={2} className="justify-content-center">
-      {tags?.map((tag) => (
-        <Button
-          variant="success"
-          onClick={() => handleClickOnTag(tag.name)}
-          key={tag.id}
-        >
-          {tag.name}
-        </Button>
-      ))}
-    </Stack>
+    <div style={{ maxWidth: '350px' }}>
+      <Stack
+        direction="horizontal"
+        gap={2}
+        className="justify-content-center flex-wrap"
+      >
+        {tags?.map((tag) => (
+          <Button
+            variant="success"
+            className="rounded-5"
+            onClick={() => handleClickOnTag(tag.name)}
+            key={tag.id}
+          >
+            {tag.name}
+          </Button>
+        ))}
+      </Stack>
+    </div>
   );
 }

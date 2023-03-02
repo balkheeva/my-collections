@@ -1,5 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { Container, Dropdown, Table } from 'react-bootstrap';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 
@@ -54,6 +55,7 @@ export default function AdminPage() {
   });
   const currentUser = user;
   const users = usersMutationsLoad.data || [];
+  const intl = useIntl();
 
   useEffect(() => {
     usersMutationsLoad.mutate();
@@ -117,26 +119,31 @@ export default function AdminPage() {
                         disabled={Boolean(currentUser?.impersonatedBy)}
                         onClick={() => handleImpersonateUser(user)}
                       >
-                        <ImpersonateIcon /> Impersonate
+                        <ImpersonateIcon />
+                        <FormattedMessage id="app.admin.page.btn1" />
                       </Dropdown.Item>
                       <Dropdown.Item
                         as="button"
                         onClick={() => handleBlockOrUnblockUser(user)}
                       >
                         <BlockIcon />{' '}
-                        {user.status === 'active' ? 'Block' : 'Unblock'}
+                        {user.status === 'active'
+                          ? intl.formatMessage({ id: 'app.admin.page.btn2' })
+                          : intl.formatMessage({ id: 'app.admin.page.btn3' })}
                       </Dropdown.Item>
                       <Dropdown.Item
                         as="button"
                         onClick={() => handleChangeRole(user)}
                       >
-                        <ChangeIcon /> Change role
+                        <ChangeIcon />
+                        <FormattedMessage id="app.admin.page.btn4" />
                       </Dropdown.Item>
                       <Dropdown.Item
                         as="button"
                         onClick={() => handleDeleteUser(user.id)}
                       >
-                        <DeleteIcon /> Delete
+                        <DeleteIcon />
+                        <FormattedMessage id="app.admin.page.btn5" />
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>

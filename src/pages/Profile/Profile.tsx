@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
 import { useMutation } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -62,7 +63,7 @@ export default function Profile() {
     <>
       {user && (
         <Button variant="primary" onClick={handleShow}>
-          Create new collection
+          <FormattedMessage id="app.profile.btn" />
         </Button>
       )}
       <ModalCollection
@@ -72,7 +73,9 @@ export default function Profile() {
         show={show}
         errors={errors}
       />
-      <h3 className="text-center mt-3 mb-5 ">My collections</h3>
+      <h3 className="text-center mt-3 mb-5 ">
+        <FormattedMessage id="app.profile.title" />
+      </h3>
       <CollectionsList
         collections={collections}
         onOpenCollection={handleOpenCollection}

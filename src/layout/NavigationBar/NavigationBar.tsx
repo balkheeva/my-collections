@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import {
   Button,
   Col,
@@ -6,14 +6,15 @@ import {
   Dropdown,
   Form,
   InputGroup,
-  NavDropdown,
   Navbar,
   Row,
 } from 'react-bootstrap';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 
 import SearchDropDown from '../../components/SearchDropDown/SearchDropDown';
 import { User } from '../../context/auth/authContext';
+import { localizationContext } from '../../context/localization/localizationContext';
 import './NavigationBar.scss';
 import ProfileInfo from './ProfileInfo';
 
@@ -36,6 +37,8 @@ export default function NavigationBar(props: Props) {
     onSearchSubmit,
   } = props;
   const [showDropDown, setShowDropDown] = useState(false);
+  const { currentLocale, onSwitchLocale } = useContext(localizationContext);
+  const intl = useIntl();
 
   const handleSubmitSearch = (value: string) => {
     setShowDropDown(false);
@@ -53,7 +56,7 @@ export default function NavigationBar(props: Props) {
           <Col lg={3} className="d-none d-lg-block">
             <Navbar.Brand className="fw-bold">
               <NavLink className="text-decoration-none" to="/">
-                My Collections
+                <FormattedMessage id="app.nav.logo" />
               </NavLink>
             </Navbar.Brand>
           </Col>
@@ -62,13 +65,15 @@ export default function NavigationBar(props: Props) {
               <div className="position-relative w-100">
                 <InputGroup>
                   <Form.Control
-                    placeholder="Search"
+                    placeholder={intl.formatMessage({
+                      id: 'app.nav.input.placeholder',
+                    })}
                     onChange={handleChangeSearch}
                     onBlur={() => setShowDropDown(false)}
                     value={searchValue}
                   ></Form.Control>
                   <Button onClick={() => handleSubmitSearch(searchValue)}>
-                    Search
+                    {intl.formatMessage({ id: 'app.nav.input.btn' })}
                   </Button>
                 </InputGroup>
                 {showDropDown && (
@@ -96,12 +101,22 @@ export default function NavigationBar(props: Props) {
                 className="p-0"
                 id="dropdown-basic"
               >
-                EN
+                {currentLocale}
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">EN</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">RU</Dropdown.Item>
+                <Dropdown.Item
+                  href="#/action-1"
+                  onClick={() => onSwitchLocale('en')}
+                >
+                  EN
+                </Dropdown.Item>
+                <Dropdown.Item
+                  href="#/action-2"
+                  onClick={() => onSwitchLocale('ru')}
+                >
+                  RU
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Col>

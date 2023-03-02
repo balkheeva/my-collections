@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Button, Container, Image, Stack, Table } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
+import { useQueryClient } from 'react-query';
 import { NavLink, useLocation } from 'react-router-dom';
 
 import { searchByQuery } from '../../api/search';
@@ -18,14 +20,18 @@ export default function Search() {
 
   return (
     <>
-      <h3 className="text-center">Search results</h3>
+      <h3 className="text-center">
+        <FormattedMessage id="app.search.title1" />
+      </h3>
       <Container className="rounded-3 p-3 mt-3">
         {foundItems.length === 0 && (
           <Stack className="align-items-center">
             <Image src={noResultsImg} style={{ width: '150px' }} />
-            <h4 className="text-center mt-3">Sorry, no results found</h4>
+            <h4 className="text-center mt-3">
+              <FormattedMessage id="app.search.title2" />
+            </h4>
             <p className="text-center">
-              Please try searching with another term
+              <FormattedMessage id="app.search.text" />
             </p>
           </Stack>
         )}
@@ -33,12 +39,24 @@ export default function Search() {
           <Table responsive className="p-3">
             <thead>
               <tr>
-                <th>Collection</th>
-                <th>Name</th>
-                <th>Tags</th>
-                <th>Created</th>
-                <th>Updated</th>
-                <th>Author</th>
+                <th>
+                  <FormattedMessage id="app.home.table.th1" />
+                </th>
+                <th>
+                  <FormattedMessage id="app.home.table.th2" />
+                </th>
+                <th>
+                  <FormattedMessage id="app.home.table.th3" />
+                </th>
+                <th>
+                  <FormattedMessage id="app.home.table.th4" />
+                </th>
+                <th>
+                  <FormattedMessage id="app.home.table.th5" />
+                </th>
+                <th>
+                  <FormattedMessage id="app.home.table.th6" />
+                </th>
               </tr>
             </thead>
             <tbody>

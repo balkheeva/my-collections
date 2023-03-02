@@ -1,4 +1,5 @@
 import { Dropdown } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
 
 import { TCollection } from '../api/collections';
 import { TItem } from '../api/items';
@@ -21,11 +22,15 @@ export default function SettingsDropDown(props: Props) {
       <Dropdown.Menu>
         <Dropdown.Item onClick={onEdit}>
           <EditIcon />
-          <span className="ms-1">Edit collection</span>
+          <span className="ms-1">
+            <FormattedMessage id="app.collection.dropdown.item1" />
+          </span>
         </Dropdown.Item>
         <Dropdown.Item onClick={() => onDelete(baseItem.id)}>
           <DeleteIcon />
-          <span className="ms-1">Delete collection</span>
+          <span className="ms-1">
+            <FormattedMessage id="app.collection.dropdown.item2" />
+          </span>
         </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>

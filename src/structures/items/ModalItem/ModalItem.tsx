@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { useParams } from 'react-router-dom';
 
 import { TCollection } from '../../../api/collections';
@@ -41,7 +42,6 @@ export default function ModalItem(props: {
   };
 
   const handleChangeOV = (data: any) => {
-    console.log(data);
     setValues({
       ...values,
       optionalFields: { ...values.optionalFields, ...data },
@@ -63,6 +63,7 @@ export default function ModalItem(props: {
     const newTag = await createTag(data);
     return mapTag(newTag);
   };
+  const intl = useIntl();
 
   return (
     <Modal show={show} onHide={onClose}>
@@ -73,9 +74,9 @@ export default function ModalItem(props: {
         <Form>
           <InputForm
             name="name"
-            placeholder="Name"
+            placeholder={intl.formatMessage({ id: 'app.items.modal.title' })}
             type="text"
-            label="Name"
+            label={intl.formatMessage({ id: 'app.items.modal.title' })}
             values={values}
             errors={errors}
             onChange={handleChange}
@@ -86,18 +87,29 @@ export default function ModalItem(props: {
             onChange={handleChangeTag}
             isCreatable
             onCreate={handleCreateTag}
-            title="Tags"
+            title={intl.formatMessage({ id: 'app.items.modal.text1' })}
           />
           {collection.optionalFields.map((field: any) =>
             field.type === 'Boolean' ? (
-              <Form.Select
-                key={field.id}
-                onChange={(e) => handleChangeOV({ [field.id]: e.target.value })}
-              >
-                <option>Not chosen</option>
-                <option>Yes</option>
-                <option>No</option>
-              </Form.Select>
+              <div key={field.id}>
+                <label className="mb-1">{field.name}</label>
+                <Form.Select
+                  className="mb-3"
+                  onChange={(e) =>
+                    handleChangeOV({ [field.id]: e.target.value })
+                  }
+                >
+                  <option>
+                    <FormattedMessage id="app.items.modal.dropdown.item1" />
+                  </option>
+                  <option>
+                    <FormattedMessage id="app.items.modal.dropdown.item2" />
+                  </option>
+                  <option>
+                    <FormattedMessage id="app.items.modal.dropdown.item3" />
+                  </option>
+                </Form.Select>
+              </div>
             ) : (
               <InputForm
                 key={field.id}
