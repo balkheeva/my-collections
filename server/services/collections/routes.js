@@ -16,7 +16,8 @@ route.post('/', async (req, res) => {
             {model: Item, as: 'items'},
             {model: Theme, as: 'themes'},
             {model: User, as: 'author'}
-        ]
+        ],
+        limit: Math.min(req.body.limit || 100, 100),
     })
 
     res.json(collections)
@@ -102,12 +103,35 @@ route.post('/add-field/:id', isAuthorized, async (req, res) => {
     res.json(updatedCollection)
 })
 
+const types = {
+    String, Number, Date, Boolean
+}
+route.post('/sort/:id', async (req, res) => {
+    const collection = await Collection.findByPk(req.params.id, {include: {model: Item, as: 'items'}})
+    const optionalFieldsCol = collection.optionalFields
+    const optionalFieldsItem = collection.items.map( item => item.optionalFields)
+
+    const changeType = ( obj ) => {
+        const value = obj.value === 'No' && obj.type === 'Boolean' ? false : types[obj.type](obj.value)
+        return {id: obj.id, type: obj.type, value }
+    }
+
+    const rawFields = optionalFieldsItem.map(itemF => (
+        optionalFieldsCol.map(field => changeType({id: field.id,  type: field.type, value: itemF[field.id]}))
+    ))
+    console.log(rawFields)
+
+    res.json(collection)
+
+})
+
 route.post('/:id', async (req, res) => {
     const collection = (await Collection.findByPk(req.params.id, {
         include: [{
             model: Item, as: 'items', include: {model: Tag, as: 'tags'}
         }, {model: User, as: 'author'}, {model: Theme, as: 'themes'}]
     }))
+
     res.json(collection)
 })
 module.exports = route

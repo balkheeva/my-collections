@@ -1,6 +1,5 @@
 const proxy = require('express-http-proxy');
 const path = require("path");
-const client = require("./elasticsearch/connect")
 const usersRoute = require("./services/users/routes")
 const authRoute = require("./services/auth/routes")
 const collectionsRoute = require("./services/collections/routes")
@@ -11,19 +10,14 @@ const searchRoute = require("./services/search/routes")
 const commentRoute = require("./services/comments/routes")
 const {isAuthorized} = require("./services/auth/utils")
 const {connectMySQL} = require("./mysql/connect");
-const { app, server, express} = require("./createServer/createServer");
+const { app, server, express } = require("./createServer/createServer");
+const {createIndices} = require("./elasticsearch/createIndices");
 const PORT = process.env.PORT || 8080
 
 
 
 connectMySQL()
-
-async function createIndices() {
-    client.indices.create( {index: 'items'}, (err, res, status) => {
-        console.log(err, res, status);
-    })
-}
-  //createIndices()
+createIndices()
 
 app.use('/users', isAuthorized, usersRoute)
 app.use('/auth', authRoute);

@@ -7,6 +7,7 @@ import {TCollection} from "../../../api/collections";
 import ModalItem from "../ModalItem/ModalItem";
 import {useState} from "react";
 import {NavLink} from "react-router-dom";
+import {formatDate} from "../../../infrastructure/helpers/formatDate";
 
 type Props ={
     item: TItem,
@@ -31,6 +32,7 @@ export default function Item(props: Props ){
                 <td><NavLink to={`/item/${item.id}`}>{item.name}</NavLink></td>
                 <td><TagCloud tags={item.tags}/></td>
                 {optionalFields?.map((field: any) => <td className="overflow-hidden" style={{textOverflow: 'ellipsis'}} key={field.id}>{item.optionalFields[field.id] || '—'}</td>)}
+                <td>{formatDate(item.createdAt)}</td>
                 {isAuthor && (
                     <td>
                         <Button variant="link" className="p-0 me-2" onClick={() => onDelete?.(item)}>

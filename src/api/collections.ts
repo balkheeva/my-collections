@@ -14,7 +14,7 @@ export type TCollection = {
     optionalFields: any,
     author: any,
     themes: any[],
-    items: any[],
+    items: TItem[],
     createdAt: string,
     updatedAt:string
 }

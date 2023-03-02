@@ -5,9 +5,8 @@ import ModalItem from "../../structures/items/ModalItem/ModalItem";
 import ItemsTable from "../../structures/items/ItemsTable/ItemsTable";
 import {Button, Row, Stack, Col, Image} from "react-bootstrap";
 import {useContext, useState} from "react";
-import {createItem, deleteItem, editItem} from "../../api/items";
+import {createItem, deleteItem, editItem, TItem} from "../../api/items";
 import ReactMarkdown from "react-markdown";
-import CardCover from "../../components/images/CardCover";
 import SettingsDropDown from "../../components/SettingsDropDown";
 import ModalCollection from "../../structures/collections/ModalCollection/ModalCollection";
 import ModalFields from "../../structures/items/ModalFields/ModalFields";
@@ -15,6 +14,7 @@ import ImageContainer from "../../components/ImageContainer/ImageContainer";
 import placeholderImage from "../../components/images/cover.png";
 import {formatDate} from "../../infrastructure/helpers/formatDate";
 import {authContext} from "../../context/auth/authContext";
+import SortFilterBar from "../../structures/items/SortFilterBar/SortFilterBar";
 
 const initialValues = { name: '', tags: [], collectionId: '', optionalFields: {}}
 
@@ -36,6 +36,12 @@ export default function CollectionPage() {
     const itemMutationEdit = useMutation(editItem, {onSuccess: handleInvalidate})
     const fieldMutation = useMutation(addField, {onSuccess: handleInvalidate})
     const {user} = useContext(authContext)
+    const [filters, setFilters] = useState<Record<string, any[]>>({})
+    const [sortBy, setSortBy] = useState<'asc' | 'desc'>('desc')
+    const items = [...(collection?.items || [])].sort((a: TItem, b: TItem) => {
+        if (sortBy === 'asc') return Date.parse(a.createdAt) - Date.parse(b.createdAt);
+        return Date.parse(b.createdAt) - Date.parse(a.createdAt);
+    });
 
     const isAuthor = collection?.author.id === user?.id
 
@@ -74,7 +80,12 @@ export default function CollectionPage() {
         setShowModalFields(false)
     }
 
+    const handleFilterBy = (newFilters: Record<string, any[]>) => {
+        if (!collection) return
+        setFilters(newFilters)
+    }
     if (!collection) return null
+    const activeFilters = Object.keys(filters)
     return (
         <div className="mb-4 bg-light rounded-3 shadow-sm p-4">
             <Row className="align-items-center mb-4">
@@ -90,9 +101,7 @@ export default function CollectionPage() {
                             onEdit={() => setShowModalCol(true)}
                         />}
                     </Stack>
-                    <ReactMarkdown>
-                        {collection.description}
-                    </ReactMarkdown>
+                    <ReactMarkdown>{collection.description}</ReactMarkdown>
                     <Stack className="mb-4">
                         <small>Themes: {collection.themes.map(theme => theme.name).join(', ')}</small>
                         <small>Author: {collection.author.name}</small>
@@ -105,11 +114,24 @@ export default function CollectionPage() {
                     </Stack>
                 </Col>
             </Row>
-            {collection.items.length < 1 ? <h4 className="text-center">No items yet...</h4>
+           <SortFilterBar
+               items={collection.items}
+               sortBy={sortBy}
+               onSortBy={setSortBy}
+               onFilter={handleFilterBy}
+               collection={collection}
+           />
+            {!collection.items.length
+                ? <h4 className="text-center">No items yet...</h4>
                 : (
                     <ItemsTable
                         isAuthor={isAuthor}
-                        items={collection.items}
+                        items={items?.filter(item => {
+                            if (!activeFilters.length) return true
+                            return activeFilters.find(filterKey => {
+                                return filters[filterKey].includes(item.optionalFields[filterKey])
+                            })
+                        })}
                         collection={collection}
                         onDelete={handleDeleteItem}
                         onSubmit={handleEditItem}

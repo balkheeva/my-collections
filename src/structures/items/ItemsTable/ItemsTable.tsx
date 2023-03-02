@@ -4,7 +4,7 @@ import {TItem} from "../../../api/items";
 import {TCollection} from "../../../api/collections";
 
 type Props = {
-    items: TItem[],
+    items: TItem[] | undefined,
     isAuthor: boolean,
     collection: TCollection,
     onDelete?: (form: any) => void
@@ -20,7 +20,8 @@ export default function ItemsTable(props: Props) {
                 <th>Id</th>
                 <th>Name</th>
                 <th>Tags</th>
-                {optionalFields.map((field, index) => <th key={index}>{field.name}</th>)}
+                {optionalFields.map((field, index) => <th key={index} className="text-nowrap">{field.name}</th>)}
+                <th>Created</th>
                 {isAuthor && <th></th>}
             </tr>
             </thead>

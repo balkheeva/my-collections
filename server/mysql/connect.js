@@ -24,5 +24,7 @@ async function connectMySQL(){
     console.log("All models were synchronized successfully.");
 }
 
+
+
 module.exports.connectMySQL = connectMySQL
 module.exports.sequelize = sequelize

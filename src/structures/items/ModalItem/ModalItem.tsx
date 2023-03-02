@@ -30,6 +30,7 @@ export default function ModalItem(props: {
     }
 
     const handleChangeOV = (data: any) => {
+        console.log(data)
         setValues({...values, optionalFields: {...values.optionalFields, ...data}})
     }
 
