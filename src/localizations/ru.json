@@ -1,7 +1,7 @@
 {
   "app.nav.dropdown.item1": "Мои коллекции",
   "app.nav.dropdown.item2": "Переключить тему",
-  "app.nav.dropdown.item3": "Сменить пользователя",
+  "app.nav.dropdown.item3": "Вернуться в свой аккаунт",
   "app.nav.dropdown.item4": "Пользователи",
   "app.nav.dropdown.item5": "Выйти",
   "app.nav.input.btn": "Поиск",
@@ -29,6 +29,8 @@
 
   "app.collection.dropdown.item1": "Редактировать коллекцию",
   "app.collection.dropdown.item2": "Удалить коллекцию",
+  "app.collection.page.text": "Айтемов пока нет...",
+  "app.collection.page.dropdown.btn": "Применить",
 
   "app.collection.modal.title11": "Создать",
   "app.collection.modal.title12": "коллекцию",
@@ -49,13 +51,16 @@
   "app.items.dropdown1.item2": "Сначала новые",
   "app.items.dropdown2": "Фильтр",
 
-  "app.items.modal.title": "Название",
-  "app.items.modal.text1": "Тэги",
+  "app.items.modal.title1": "Создать айтем",
+  "app.items.modal.title2": "Редактировать айтем",
+  "app.items.modal.text1": "Название",
+  "app.items.modal.text2": "Тэги",
   "app.items.modal.btn1": "Создать",
   "app.items.modal.btn2": "Сохранить",
   "app.items.modal.dropdown.item1": "Не выбрано",
   "app.items.modal.dropdown.item2": "Да",
   "app.items.modal.dropdown.item3": "Нет",
+  "app.items.modal.input.placeholder": "Название тэга...",
 
   "app.item.page.text1": "Создан",
   "app.item.page.text2": "Автор",
@@ -104,5 +109,8 @@
   "app.register.input.placeholder3": "Пароль",
   "app.register.input.btn": "Зарегистрироваться",
   "app.register.input.text": "Уже зарегистрированы? Войдите",
-  "app.register.input.link": "здесь"
+  "app.register.input.link": "здесь",
+
+  "yes": "Да",
+  "no": "Нет"
 }

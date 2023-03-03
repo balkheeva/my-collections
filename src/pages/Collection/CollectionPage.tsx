@@ -167,31 +167,34 @@ export default function CollectionPage() {
           )}
         </Col>
       </Row>
-      <SortFilterBar
-        items={collection.items}
-        sortBy={sortBy}
-        onSortBy={setSortBy}
-        onFilter={handleFilterBy}
-        collection={collection}
-      />
+
       {!collection.items.length ? (
-        <h4 className="text-center">No items yet...</h4>
+        <h4 className="text-center"><FormattedMessage id="app.collection.page.text"/></h4>
       ) : (
-        <ItemsTable
-          isAuthor={isAuthor}
-          items={items?.filter((item) => {
-            if (!activeFilters.length) return true;
-            return activeFilters.find((filterKey) => {
-              return filters[filterKey].includes(
-                item.optionalFields[filterKey],
-              );
-            });
-          })}
-          collection={collection}
-          onDelete={handleDeleteItem}
-          onSubmit={handleEditItem}
-          optionalFields={collection.optionalFields}
-        />
+        <>
+          <SortFilterBar
+            items={collection.items}
+            sortBy={sortBy}
+            onSortBy={setSortBy}
+            onFilter={handleFilterBy}
+            collection={collection}
+          />
+          <ItemsTable
+            isAuthor={isAuthor}
+            items={items?.filter((item) => {
+              if (!activeFilters.length) return true;
+              return activeFilters.find((filterKey) => {
+                return filters[filterKey].includes(
+                  item.optionalFields[filterKey],
+                );
+              });
+            })}
+            collection={collection}
+            onDelete={handleDeleteItem}
+            onSubmit={handleEditItem}
+            optionalFields={collection.optionalFields}
+          />
+        </>
       )}
       <ModalItem
         collection={collection}

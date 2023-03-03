@@ -33,7 +33,7 @@ export default function InputForm(props: InputProps) {
         as={as}
         placeholder={placeholder}
         onChange={handleChange}
-        value={values[name]}
+        value={values[name] || ''}
       />
       {errors[name] && (
         <Form.Control.Feedback type="invalid" style={{ display: 'block' }}>

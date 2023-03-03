@@ -27,6 +27,8 @@ export default function SortFilterBar(props: Props) {
   const [filters, setFilters] = useState<Record<string, any>>({});
   const sortType = sortItems.find((i) => i.value === sortBy)?.label;
 
+  console.log(opFieldsItems)
+
   const handleChange = (id: string, data: any) => {
     const newFilters = { ...filters };
     if (data.length) newFilters[id] = data;
@@ -53,26 +55,26 @@ export default function SortFilterBar(props: Props) {
         </Dropdown.Menu>
       </Dropdown>
 
-      <Dropdown>
-        <Dropdown.Toggle variant="outline-primary">
-          <FormattedMessage id="app.items.dropdown2" />
-        </Dropdown.Toggle>
-        <Dropdown.Menu>
-          {fieldsForFilter.map((field: any) => (
-            <Dropdown.Item
-              as={FilterItem}
-              key={field.id}
-              field={field}
-              values={filters[field.id] || []}
-              opFieldsItems={opFieldsItems}
-              onChange={(data) => handleChange(field.id, data)}
-            ></Dropdown.Item>
-          ))}
-          <Button className="m-3" onClick={() => onFilter(filters)}>
-            Apply
-          </Button>
-        </Dropdown.Menu>
-      </Dropdown>
+        <Dropdown>
+          <Dropdown.Toggle variant="outline-primary">
+            <FormattedMessage id="app.items.dropdown2" />
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            {fieldsForFilter.map((field: any) => (
+              <Dropdown.Item
+                as={FilterItem}
+                key={field.id}
+                field={field}
+                values={filters[field.id] || []}
+                opFieldsItems={opFieldsItems}
+                onChange={(data) => handleChange(field.id, data)}
+              ></Dropdown.Item>
+            ))}
+            <Button className="m-3" onClick={() => onFilter(filters)}>
+              <FormattedMessage id="app.collection.page.dropdown.btn"/>
+            </Button>
+          </Dropdown.Menu>
+        </Dropdown>
     </Stack>
   );
 }

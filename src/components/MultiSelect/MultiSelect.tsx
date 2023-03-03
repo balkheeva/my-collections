@@ -20,13 +20,14 @@ type Props = {
   isCreatable?: boolean;
   onCreate?: Function;
   title?: string;
+  intl?: any
 };
 type Item = {
   value: any;
   label: any;
 };
 export default function MultiSelect(props: Props) {
-  const { values, onChange, onLoadItems, isCreatable, onCreate, title } = props;
+  const { values, onChange, onLoadItems, isCreatable, onCreate, title, intl} = props;
   const [items, setItems] = useState<Array<{ value: any; label: string }>>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -66,7 +67,7 @@ export default function MultiSelect(props: Props) {
           onChange={(e) => handleInputChange(e.target.value)}
           onFocus={handleFocus}
           onBlur={() => setIsOpen(false)}
-          placeholder="Start typing..."
+          placeholder={intl.formatMessage({id: "app.items.modal.input.placeholder"})}
           value={inputValue}
         />
         {isCreatable && inputValue.length > 0 && items.length < 1 && (

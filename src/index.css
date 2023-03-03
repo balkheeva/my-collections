@@ -35,7 +35,7 @@ a:hover {
   --bs-dropdown-bg: #2b3036;
   --bs-dropdown-link-color: #fff;
   --bs-dropdown-link-hover-color: #fff;
-  --bs-dropdown-link-hover-bg: #2b3036;
+  --bs-dropdown-link-hover-bg: rgba(66, 94, 126, 0.56);
 }
 
 .dark .form-select {

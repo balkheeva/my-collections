@@ -24,6 +24,12 @@ export default function ModalItem(props: {
     CollectionId,
     optionalFields,
   });
+
+  const intl = useIntl()
+  const createTitle = intl.formatMessage({id: "app.items.modal.title1"})
+  const editTitle = intl.formatMessage({id: "app.items.modal.title2"})
+  const createBtnTitle = intl.formatMessage({id: "app.items.modal.btn1"})
+  const editBtnTitle = intl.formatMessage({id: "app.items.modal.btn2"})
   const mapTag = (tag: TTags) => ({ value: tag.id, label: tag.name });
   const params = useParams() as { id: string };
   const [errors, setErrors] = useState({});
@@ -63,31 +69,31 @@ export default function ModalItem(props: {
     const newTag = await createTag(data);
     return mapTag(newTag);
   };
-  const intl = useIntl();
 
   return (
     <Modal show={show} onHide={onClose}>
       <Modal.Header closeButton>
-        <Modal.Title>{id ? 'Edit' : 'Create'} item</Modal.Title>
+        <Modal.Title>{id ? editTitle : createTitle}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
           <InputForm
             name="name"
-            placeholder={intl.formatMessage({ id: 'app.items.modal.title' })}
+            placeholder={intl.formatMessage({ id: 'app.items.modal.text1' })}
             type="text"
-            label={intl.formatMessage({ id: 'app.items.modal.title' })}
+            label={intl.formatMessage({ id: 'app.items.modal.text1' })}
             values={values}
             errors={errors}
             onChange={handleChange}
           />
           <MultiSelect
+            intl={intl}
             values={values.tags?.map(mapTag)}
             onLoadItems={handleLoadTags}
             onChange={handleChangeTag}
             isCreatable
             onCreate={handleCreateTag}
-            title={intl.formatMessage({ id: 'app.items.modal.text1' })}
+            title={intl.formatMessage({ id: 'app.items.modal.text2' })}
           />
           {collection.optionalFields.map((field: any) =>
             field.type === 'Boolean' ? (
@@ -95,17 +101,18 @@ export default function ModalItem(props: {
                 <label className="mb-1">{field.name}</label>
                 <Form.Select
                   className="mb-3"
+                  value={ values.optionalFields[field.id] == null ? 'null' : values.optionalFields[field.id].toString() }
                   onChange={(e) =>
-                    handleChangeOV({ [field.id]: e.target.value })
+                    handleChangeOV({ [field.id]: e.target.value === 'null' ? null : e.target.value === 'true' })
                   }
                 >
-                  <option>
+                  <option value='null'>
                     <FormattedMessage id="app.items.modal.dropdown.item1" />
                   </option>
-                  <option>
+                  <option value='true'>
                     <FormattedMessage id="app.items.modal.dropdown.item2" />
                   </option>
-                  <option>
+                  <option value='false'>
                     <FormattedMessage id="app.items.modal.dropdown.item3" />
                   </option>
                 </Form.Select>
@@ -128,7 +135,7 @@ export default function ModalItem(props: {
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={() => onFormSubmit(values)}>
-          {id ? 'Edit' : 'Create'}
+          {id ? editBtnTitle : createBtnTitle}
         </Button>
       </Modal.Footer>
     </Modal>

@@ -8,7 +8,7 @@ route.post('/', async (req, res) => {
       index: 'items',
       query: {
         multi_match: {
-          query: req.body.q,
+          query: req.body.query,
           fields: [
             'name',
             'collection.author.name',
@@ -34,7 +34,7 @@ route.post('/', async (req, res) => {
         },
       },
     });
-    res.json(result.hits.hits);
+    res.json(result.hits.hits.map(i => ({highlight: i.highlight, data: i._source, id: i._source.id})));
     console.log(result.hits.hits);
   } catch (error) {
     console.error(error);

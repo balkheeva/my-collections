@@ -1,7 +1,7 @@
 {
   "app.nav.dropdown.item1": "My collections",
   "app.nav.dropdown.item2": "Switch theme",
-  "app.nav.dropdown.item3": "Impersonate",
+  "app.nav.dropdown.item3": "Deimpersonate",
   "app.nav.dropdown.item4": "Users mgmt",
   "app.nav.dropdown.item5": "Logout",
   "app.nav.input.btn": "Search",
@@ -39,6 +39,8 @@
 
   "app.collection.page.btn1": "Create an item",
   "app.collection.page.btn2": "Add fields",
+  "app.collection.page.text": "No items yet..",
+  "app.collection.page.dropdown.btn": "Apply",
 
   "app.items.table.th1": "id",
   "app.items.table.th2": "Name",
@@ -49,13 +51,16 @@
   "app.items.dropdown1.item2": "Newest first",
   "app.items.dropdown2": "Filter by",
 
-  "app.items.modal.title": "Name",
-  "app.items.modal.text1": "Tags",
+  "app.items.modal.title1": "Create item",
+  "app.items.modal.title2": "Edit item",
+  "app.items.modal.text1": "Name",
+  "app.items.modal.text2": "Tags",
   "app.items.modal.btn1": "Create",
   "app.items.modal.btn2": "Edit",
   "app.items.modal.dropdown.item1": "Not choosen",
   "app.items.modal.dropdown.item2": "Yes",
   "app.items.modal.dropdown.item3": "No",
+  "app.items.modal.input.placeholder": "tart typing...",
 
   "app.item.page.text1": "Created",
   "app.item.page.text2": "Author",
@@ -104,5 +109,8 @@
   "app.register.input.placeholder3": "Password",
   "app.register.input.btn": "Register",
   "app.register.input.text": "Already have an account? Sign in",
-  "app.register.input.link": "here"
+  "app.register.input.link": "here",
+
+  "yes": "Yes",
+  "no": "No"
 }

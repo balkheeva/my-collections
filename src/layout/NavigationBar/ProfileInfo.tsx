@@ -1,15 +1,11 @@
-import { useContext } from 'react';
-import { Button, NavDropdown, Stack } from 'react-bootstrap';
+import { NavDropdown, Stack } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
-import { NavLink } from 'react-router-dom';
 
-import DarkThemeIcon from '../../components/icons/DarkThemeIcon';
 import ImpersonateIcon from '../../components/icons/ImpersonateIcon';
 import LogoutIcon from '../../components/icons/LogoutIcon';
 import UserIcon from '../../components/icons/UserIcon';
 import UsersIcon from '../../components/icons/UsersIcon';
 import { User } from '../../context/auth/authContext';
-import { themeContext } from '../../context/theme/themeContext';
 
 export default function ProfileInfo(props: {
   user: User;
@@ -29,14 +25,8 @@ export default function ProfileInfo(props: {
         href={`/profile/${user.id}`}
         className="text-decoration-none"
       >
-        <FormattedMessage id="app.nav.dropdown.item1" />
+        <UserIcon/> <FormattedMessage id="app.nav.dropdown.item1" />
       </NavDropdown.Item>
-      {/*<NavDropdown.Item*/}
-      {/*  as="button"*/}
-      {/*  onClick={() => onToggleTheme(theme ? '' : 'dark')}*/}
-      {/*>*/}
-      {/*  <DarkThemeIcon /> <FormattedMessage id="app.nav.dropdown.item2" />*/}
-      {/*</NavDropdown.Item>*/}
       {user.impersonatedBy && (
         <NavDropdown.Item as="button" onClick={handleDeimpersonate}>
           <ImpersonateIcon /> <FormattedMessage id="app.nav.dropdown.item3" />

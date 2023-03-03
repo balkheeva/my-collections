@@ -9,7 +9,7 @@ export default function SearchDropDown({ foundData, onClick }: any) {
       onClick={onClick}
     >
       {foundData?.map((item: any) => (
-        <FoundItem key={item._id} item={item} />
+        <FoundItem key={item.id} item={item} />
       ))}
     </ListGroup>
   );
@@ -29,8 +29,8 @@ export function FoundItem(props: { item: any }) {
     optionalFields: 'others',
   };
   return (
-    <ListGroup.Item as={NavLink} to={`/item/${item._id}`}>
-      {item._source.name}
+    <ListGroup.Item as={NavLink} to={`/item/${item.id}`}>
+      {item.data.name}
       <br />
       {fields.map((f, index) => (
         <InnerHTML
