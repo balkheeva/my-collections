@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Button, Form, Image, Modal } from 'react-bootstrap';
 import { useIntl } from 'react-intl';
 import ReactMarkdown from 'react-markdown';
@@ -135,8 +135,8 @@ export default function ModalCollection(props: Props) {
       <Modal.Footer>
         <Button onClick={() => onFormSubmit(values)}>
           {id
-            ? intl.formatMessage({ id: 'app.collection.modal.title11' })
-            : intl.formatMessage({ id: 'app.collection.modal.title22' })}
+            ? intl.formatMessage({ id: 'app.collection.modal.title22' })
+            : intl.formatMessage({ id: 'app.collection.modal.title11' })}
         </Button>
       </Modal.Footer>
     </Modal>

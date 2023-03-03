@@ -8,6 +8,7 @@ import {
 } from 'react-bootstrap';
 
 import CrossIcon from '../icons/CrossIcon';
+import {useIntl} from "react-intl";
 
 type Function = (data: any) => Promise<{ value: any; label: string }>;
 
@@ -20,17 +21,18 @@ type Props = {
   isCreatable?: boolean;
   onCreate?: Function;
   title?: string;
-  intl?: any
 };
 type Item = {
   value: any;
   label: any;
 };
 export default function MultiSelect(props: Props) {
-  const { values, onChange, onLoadItems, isCreatable, onCreate, title, intl} = props;
+  const { values, onChange, onLoadItems, isCreatable, onCreate, title} = props;
   const [items, setItems] = useState<Array<{ value: any; label: string }>>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
+
+  const intl = useIntl()
 
   const handleInputChange = async (searchValue: string) => {
     setInputValue(searchValue);

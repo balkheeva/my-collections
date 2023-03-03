@@ -87,7 +87,6 @@ export default function ModalItem(props: {
             onChange={handleChange}
           />
           <MultiSelect
-            intl={intl}
             values={values.tags?.map(mapTag)}
             onLoadItems={handleLoadTags}
             onChange={handleChangeTag}

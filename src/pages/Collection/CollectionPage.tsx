@@ -62,6 +62,7 @@ export default function CollectionPage() {
     onSuccess: handleInvalidate,
   });
   const fieldMutation = useMutation(addField, { onSuccess: handleInvalidate });
+
   const { user } = useContext(authContext);
   const [filters, setFilters] = useState<Record<string, any[]>>({});
   const [sortBy, setSortBy] = useState<'asc' | 'desc'>('desc');
@@ -80,7 +81,7 @@ export default function CollectionPage() {
   const handleDeleteCollection = async (id: string) => {
     await collectionsMutationDelete.mutate({ id: id });
     collectionsMutationDelete.reset();
-    navigate('/profile');
+    navigate(`/profile/${user?.id}`);
   };
 
   const handleEditCollection = async (form: any) => {
@@ -102,11 +103,16 @@ export default function CollectionPage() {
     reset();
     setShowModalItem(false);
   };
+
   const handleSubmitFields = async (form: any) => {
-    fieldMutation.mutate({ ...form, id: params.id });
+    await fieldMutation.mutateAsync({ ...form, id: params.id });
+    setShowModalFields(false)
     fieldMutation.reset();
-    setShowModalFields(false);
   };
+
+  console.log(fieldMutation.data)
+
+
 
   const handleFilterBy = (newFilters: Record<string, any[]>) => {
     if (!collection) return;

@@ -27,8 +27,6 @@ export default function SortFilterBar(props: Props) {
   const [filters, setFilters] = useState<Record<string, any>>({});
   const sortType = sortItems.find((i) => i.value === sortBy)?.label;
 
-  console.log(opFieldsItems)
-
   const handleChange = (id: string, data: any) => {
     const newFilters = { ...filters };
     if (data.length) newFilters[id] = data;

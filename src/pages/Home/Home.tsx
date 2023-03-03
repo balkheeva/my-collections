@@ -38,12 +38,12 @@ export default function Home() {
         </div>
       )}
 
-      <Stack className="mb-5 align-items-center">
+      {tags && (tags.length > 0) && <Stack className="mb-5 align-items-center">
         <h3 className="mb-4 mt-5 text-center">
-          <FormattedMessage id="app.home.title3" />
+          <FormattedMessage id="app.home.title3"/>
         </h3>
-        <TagCloud tags={tags} />
-      </Stack>
+        <TagCloud tags={tags}/>
+      </Stack>}
     </>
   );
 }

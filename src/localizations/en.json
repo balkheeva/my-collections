@@ -8,7 +8,7 @@
   "app.nav.input.placeholder": "Search",
 
   "app.home.title1": "Recently added items",
-  "app.home.title2": "Largest collections",
+  "app.home.title2": "Recently added collections",
   "app.home.title3": "Try to find something by tags",
   "app.home.table.th1": "Collection",
   "app.home.table.th2": "Name",
@@ -60,7 +60,7 @@
   "app.items.modal.dropdown.item1": "Not choosen",
   "app.items.modal.dropdown.item2": "Yes",
   "app.items.modal.dropdown.item3": "No",
-  "app.items.modal.input.placeholder": "tart typing...",
+  "app.items.modal.input.placeholder": "Start typing...",
 
   "app.item.page.text1": "Created",
   "app.item.page.text2": "Author",
