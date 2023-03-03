@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Dropdown, Form, Stack } from 'react-bootstrap';
-import { FormattedMessage } from 'react-intl';
+import {FormattedMessage, useIntl} from 'react-intl';
 
 import { TCollection } from '../../../api/collections';
 import { TItem } from '../../../api/items';
@@ -20,12 +20,14 @@ const sortItems = [
 
 export default function SortFilterBar(props: Props) {
   const { items, onSortBy, collection, onFilter, sortBy } = props;
+  const [showFilter, setShowFilter] = useState(false)
   const opFieldsItems = items.map((item) => item.optionalFields);
   const fieldsForFilter = collection.optionalFields.filter(
     (field: any) => field.type !== 'Date',
   );
   const [filters, setFilters] = useState<Record<string, any>>({});
   const sortType = sortItems.find((i) => i.value === sortBy)?.label;
+
 
   const handleChange = (id: string, data: any) => {
     const newFilters = { ...filters };
@@ -34,10 +36,15 @@ export default function SortFilterBar(props: Props) {
     setFilters(newFilters);
   };
 
+  const handleSubmitFilters = (data: any) => {
+    onFilter(filters)
+    setShowFilter(false)
+  }
+
   return (
     <Stack direction="horizontal" gap={3} className="align-items-start mb-3">
       <Dropdown>
-        <Dropdown.Toggle variant="outline-primary">
+        <Dropdown.Toggle variant="outline-primary" >
           <FormattedMessage id={sortType} />
         </Dropdown.Toggle>
         <Dropdown.Menu>
@@ -53,26 +60,27 @@ export default function SortFilterBar(props: Props) {
         </Dropdown.Menu>
       </Dropdown>
 
-        <Dropdown>
-          <Dropdown.Toggle variant="outline-primary">
-            <FormattedMessage id="app.items.dropdown2" />
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            {fieldsForFilter.map((field: any) => (
-              <Dropdown.Item
-                as={FilterItem}
-                key={field.id}
-                field={field}
-                values={filters[field.id] || []}
-                opFieldsItems={opFieldsItems}
-                onChange={(data) => handleChange(field.id, data)}
-              ></Dropdown.Item>
-            ))}
-            <Button className="m-3" onClick={() => onFilter(filters)}>
-              <FormattedMessage id="app.collection.page.dropdown.btn"/>
-            </Button>
-          </Dropdown.Menu>
-        </Dropdown>
+      {fieldsForFilter.length > 0 ? <Dropdown show={showFilter}>
+        <Dropdown.Toggle variant="outline-primary" onClick={() => setShowFilter(!showFilter)}>
+          <FormattedMessage id="app.items.dropdown2"/>
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+          {fieldsForFilter.map((field: any) => ( filters[field.id] !== "undefined" && (
+            <Dropdown.Item
+              as={FilterItem}
+              key={field.id}
+              field={field}
+              values={filters[field.id] || []}
+              opFieldsItems={opFieldsItems}
+              onChange={(data) => handleChange(field.id, data)}
+            ></Dropdown.Item>
+            ))
+          )}
+          <Button className="m-3" onClick={handleSubmitFilters}>
+            <FormattedMessage id="app.collection.page.dropdown.btn"/>
+          </Button>
+        </Dropdown.Menu>
+      </Dropdown> : <div></div>}
     </Stack>
   );
 }
@@ -83,6 +91,7 @@ export function FilterItem(props: {
   values: any[];
 }) {
   const { opFieldsItems, field, onChange, values } = props;
+  const intl = useIntl()
 
   const handleChange = (checked: boolean, fieldValue: any) => {
     let data = [...values];
@@ -98,15 +107,20 @@ export function FilterItem(props: {
       </span>
       <Form>
         {opFieldsItems.map(
-          (f: any, index: number) =>
-            f[field.id] != null && (
+          (f: any, index: number) => {
+            let value = f[field.id]
+            if(field.type === "Boolean" && value != null) {
+              value = value ? intl.formatMessage({ id: 'yes' }) : intl.formatMessage({ id: 'no' });
+            }
+            return f[field.id] != null && (
               <Form.Check
                 key={index}
-                label={f[field.id]}
+                label={value}
                 checked={values.includes(f[field.id])}
                 onChange={(e) => handleChange(e.target.checked, f[field.id])}
               />
-            ),
+            )
+          }
         )}
       </Form>
     </div>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { useIntl } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 
 import { TCollection } from '../../../api/collections';
@@ -9,7 +10,6 @@ import EditIcon from '../../../components/icons/EditIcon';
 import { formatDate } from '../../../infrastructure/helpers/formatDate';
 import TagCloud from '../../tags/TagBadges';
 import ModalItem from '../ModalItem/ModalItem';
-import {useIntl} from "react-intl";
 
 type Props = {
   item: TItem;
@@ -23,7 +23,7 @@ type Props = {
 export default function Item(props: Props) {
   const { item, onDelete, optionalFields, collection, onSubmit, isAuthor } =
     props;
-  const intl = useIntl()
+  const intl = useIntl();
   const [show, setShow] = useState(false);
   const handleSubmit = (form: any) => {
     onSubmit?.(form);
@@ -40,9 +40,11 @@ export default function Item(props: Props) {
           <TagCloud tags={item.tags} />
         </td>
         {optionalFields?.map((field: any) => {
-          let value = item.optionalFields[field.id]
+          let value = item.optionalFields[field.id];
           if (field.type === 'Boolean' && value != null) {
-            value = value ? intl.formatMessage({id: 'yes'}) : intl.formatMessage({id: 'no'})
+            value = value
+              ? intl.formatMessage({ id: 'yes' })
+              : intl.formatMessage({ id: 'no' });
           }
           return (
             <td
@@ -52,7 +54,7 @@ export default function Item(props: Props) {
             >
               {value || '—'}
             </td>
-          )
+          );
         })}
         <td>{formatDate(item.createdAt)}</td>
         {isAuthor && (

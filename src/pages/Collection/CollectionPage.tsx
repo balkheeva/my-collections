@@ -106,13 +106,9 @@ export default function CollectionPage() {
 
   const handleSubmitFields = async (form: any) => {
     await fieldMutation.mutateAsync({ ...form, id: params.id });
-    setShowModalFields(false)
+    setShowModalFields(false);
     fieldMutation.reset();
   };
-
-  console.log(fieldMutation.data)
-
-
 
   const handleFilterBy = (newFilters: Record<string, any[]>) => {
     if (!collection) return;
@@ -175,16 +171,20 @@ export default function CollectionPage() {
       </Row>
 
       {!collection.items.length ? (
-        <h4 className="text-center"><FormattedMessage id="app.collection.page.text"/></h4>
+        <h4 className="text-center">
+          <FormattedMessage id="app.collection.page.text" />
+        </h4>
       ) : (
         <>
-          <SortFilterBar
-            items={collection.items}
-            sortBy={sortBy}
-            onSortBy={setSortBy}
-            onFilter={handleFilterBy}
-            collection={collection}
-          />
+          {collection.items.length > 1 && (
+            <SortFilterBar
+              items={collection.items}
+              sortBy={sortBy}
+              onSortBy={setSortBy}
+              onFilter={handleFilterBy}
+              collection={collection}
+            />
+          )}
           <ItemsTable
             isAuthor={isAuthor}
             items={items?.filter((item) => {

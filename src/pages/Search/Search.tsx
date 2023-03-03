@@ -1,20 +1,20 @@
 import { Container, Image, Stack, Table } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
-import {useQuery, useQueryClient} from 'react-query';
+import { useQuery, useQueryClient } from 'react-query';
 import { NavLink, useLocation } from 'react-router-dom';
 
+import { TCollection } from '../../api/collections';
+import { TItem } from '../../api/items';
 import { search } from '../../api/search';
 import noResultsImg from '../../components/images/no-results.png';
 import { formatDate } from '../../infrastructure/helpers/formatDate';
 import TagCloud from '../../structures/tags/TagBadges';
-import {TCollection} from "../../api/collections";
-import {TItem} from "../../api/items";
 
 type SearchItem = {
-  id: TItem['id'],
-  data: TItem & { collection: TCollection },
-  highlight: any,
-}
+  id: TItem['id'];
+  data: TItem & { collection: TCollection };
+  highlight: any;
+};
 
 export default function Search() {
   const location = useLocation();
@@ -26,9 +26,13 @@ export default function Search() {
   const handleInvalidate = () => {
     queryClient.invalidateQueries(queryKey);
   };
-  const { data: foundData } = useQuery<SearchItem[]>('search', () => search(query), {onSuccess: handleInvalidate});
+  const { data: foundData } = useQuery<SearchItem[]>(
+    'search',
+    () => search(query),
+    { onSuccess: handleInvalidate },
+  );
 
-  console.log(foundData)
+  console.log(foundData);
 
   // useEffect(() => {
   //   const query = new URLSearchParams(location.search).get('query');
@@ -77,7 +81,7 @@ export default function Search() {
               </tr>
             </thead>
             <tbody>
-              {foundData?.map(item => (
+              {foundData?.map((item) => (
                 <tr key={item.id}>
                   <td>
                     <NavLink to={`/collection/${item.data.collection.id}`}>
@@ -85,9 +89,7 @@ export default function Search() {
                     </NavLink>
                   </td>
                   <td>
-                    <NavLink to={`/item/${item.id}`}>
-                      {item.data.name}
-                    </NavLink>
+                    <NavLink to={`/item/${item.id}`}>{item.data.name}</NavLink>
                   </td>
                   <td>
                     <TagCloud tags={item.data.tags} />

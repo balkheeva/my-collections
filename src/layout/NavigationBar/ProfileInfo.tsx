@@ -25,7 +25,7 @@ export default function ProfileInfo(props: {
         href={`/profile/${user.id}`}
         className="text-decoration-none"
       >
-        <UserIcon/> <FormattedMessage id="app.nav.dropdown.item1" />
+        <UserIcon /> <FormattedMessage id="app.nav.dropdown.item1" />
       </NavDropdown.Item>
       {user.impersonatedBy && (
         <NavDropdown.Item as="button" onClick={handleDeimpersonate}>

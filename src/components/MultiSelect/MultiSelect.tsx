@@ -6,9 +6,9 @@ import {
   ListGroup,
   ListGroupItem,
 } from 'react-bootstrap';
+import { useIntl } from 'react-intl';
 
 import CrossIcon from '../icons/CrossIcon';
-import {useIntl} from "react-intl";
 
 type Function = (data: any) => Promise<{ value: any; label: string }>;
 
@@ -27,12 +27,12 @@ type Item = {
   label: any;
 };
 export default function MultiSelect(props: Props) {
-  const { values, onChange, onLoadItems, isCreatable, onCreate, title} = props;
+  const { values, onChange, onLoadItems, isCreatable, onCreate, title } = props;
   const [items, setItems] = useState<Array<{ value: any; label: string }>>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
 
-  const intl = useIntl()
+  const intl = useIntl();
 
   const handleInputChange = async (searchValue: string) => {
     setInputValue(searchValue);
@@ -69,7 +69,9 @@ export default function MultiSelect(props: Props) {
           onChange={(e) => handleInputChange(e.target.value)}
           onFocus={handleFocus}
           onBlur={() => setIsOpen(false)}
-          placeholder={intl.formatMessage({id: "app.items.modal.input.placeholder"})}
+          placeholder={intl.formatMessage({
+            id: 'app.items.modal.input.placeholder',
+          })}
           value={inputValue}
         />
         {isCreatable && inputValue.length > 0 && items.length < 1 && (

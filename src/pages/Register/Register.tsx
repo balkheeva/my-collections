@@ -9,7 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { authContext } from '../../context/auth/authContext';
 
-const initialValues = { name: '', email: '', password: '' , adminrole: false};
+const initialValues = { name: '', email: '', password: '', adminrole: false };
 type FormData = typeof initialValues;
 
 export default function Register() {
@@ -112,7 +112,11 @@ export default function Register() {
             </Button>
           </Stack>
           <Stack>
-          <Form.Check className="mt-3 m-auto" onChange={(e) => handleChange({adminrole: e.target.checked})} label={intl.formatMessage({id: "app.register.isAdmin"})}/>
+            <Form.Check
+              className="mt-3 m-auto"
+              onChange={(e) => handleChange({ adminrole: e.target.checked })}
+              label={intl.formatMessage({ id: 'app.register.isAdmin' })}
+            />
           </Stack>
         </Form>
       </Container>

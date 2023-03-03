@@ -34,7 +34,13 @@ route.post('/', async (req, res) => {
         },
       },
     });
-    res.json(result.hits.hits.map(i => ({highlight: i.highlight, data: i._source, id: i._source.id})));
+    res.json(
+      result.hits.hits.map((i) => ({
+        highlight: i.highlight,
+        data: i._source,
+        id: i._source.id,
+      })),
+    );
     console.log(result.hits.hits);
   } catch (error) {
     console.error(error);

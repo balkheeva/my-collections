@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import InputForm from '../../../components/InputForm/InputForm';
-import {FormattedMessage, useIntl} from "react-intl";
 
 type Props = {
   initialValues?: any;
@@ -23,7 +23,7 @@ export default function ModalFields(props: Props) {
   const { show, onClose, onSubmit, initialValues = defaultValues } = props;
   const [values, setValues] = useState(initialValues);
 
-  const intl = useIntl()
+  const intl = useIntl();
 
   const handleChange = (data: any) => {
     setValues({ ...values, ...data });
@@ -45,12 +45,16 @@ export default function ModalFields(props: Props) {
   return (
     <Modal show={show} onHide={onClose}>
       <Modal.Header closeButton>
-        <Modal.Title><FormattedMessage id="app.collection.modal.opfield.title"/></Modal.Title>
+        <Modal.Title>
+          <FormattedMessage id="app.collection.modal.opfield.title" />
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
           <Form.Select onChange={(e) => handleChangeType(e.target.value)}>
-            <option><FormattedMessage id="app.collection.modal.opfield.placeholder1"/></option>
+            <option>
+              <FormattedMessage id="app.collection.modal.opfield.placeholder1" />
+            </option>
             {fields.map((field, index) => (
               <option key={index} value={field.type}>
                 {field.type}
@@ -59,7 +63,9 @@ export default function ModalFields(props: Props) {
           </Form.Select>
           <InputForm
             name="name"
-            placeholder={intl.formatMessage({id: "app.collection.modal.opfield.placeholder2"})}
+            placeholder={intl.formatMessage({
+              id: 'app.collection.modal.opfield.placeholder2',
+            })}
             onChange={handleChange}
             values={values}
             errors={errors}
@@ -67,7 +73,9 @@ export default function ModalFields(props: Props) {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={() => handleSubmit(values)}><FormattedMessage id="app.collection.modal.opfield.btn"/></Button>
+        <Button onClick={() => handleSubmit(values)}>
+          <FormattedMessage id="app.collection.modal.opfield.btn" />
+        </Button>
       </Modal.Footer>
     </Modal>
   );

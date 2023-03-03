@@ -21,7 +21,9 @@ export { localizationContext };
 
 export function LocaleProvider(props: { children: ReactNode }) {
   const [currentLocale, setCurrentLocale] = useState<LocaleValue>(
-    () => (localStorage.getItem('locale') as LocaleValue) || (navigator.language.includes('en') ? 'en' : 'ru'),
+    () =>
+      (localStorage.getItem('locale') as LocaleValue) ||
+      (navigator.language.includes('en') ? 'en' : 'ru'),
   );
 
   const value = {

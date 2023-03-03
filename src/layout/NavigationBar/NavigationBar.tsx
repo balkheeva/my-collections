@@ -1,4 +1,4 @@
-import {useCallback, useContext, useEffect, useState} from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import {
   Button,
   Container,
@@ -7,17 +7,17 @@ import {
   NavDropdown,
   Navbar,
 } from 'react-bootstrap';
-import {FormattedMessage, useIntl} from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
 
+import { search } from '../../api/search';
 import SearchDropDown from '../../components/SearchDropDown/SearchDropDown';
 import DarkThemeIcon from '../../components/icons/DarkThemeIcon';
-import {User} from '../../context/auth/authContext';
-import {localizationContext} from '../../context/localization/localizationContext';
-import {themeContext} from '../../context/theme/themeContext';
+import { User } from '../../context/auth/authContext';
+import { localizationContext } from '../../context/localization/localizationContext';
+import { themeContext } from '../../context/theme/themeContext';
 import './NavigationBar.scss';
 import ProfileInfo from './ProfileInfo';
-import {search} from "../../api/search";
-import {useNavigate} from "react-router-dom";
 
 type Props = {
   user?: User;
@@ -25,14 +25,14 @@ type Props = {
 };
 
 export default function NavigationBar(props: Props) {
-  const {user, onLogOut} = props;
+  const { user, onLogOut } = props;
   const [showDropDown, setShowDropDown] = useState(false);
-  const {currentLocale, onSwitchLocale} = useContext(localizationContext);
+  const { currentLocale, onSwitchLocale } = useContext(localizationContext);
   const [foundData, setFoundData] = useState([]);
   const intl = useIntl();
-  const darkModeText = intl.formatMessage({id: 'app.theme.dark'});
-  const lightModeText = intl.formatMessage({id: 'app.theme.light'});
-  const {theme, onToggleTheme} = useContext(themeContext);
+  const darkModeText = intl.formatMessage({ id: 'app.theme.dark' });
+  const lightModeText = intl.formatMessage({ id: 'app.theme.light' });
+  const { theme, onToggleTheme } = useContext(themeContext);
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState(
     new URLSearchParams(window.location.search).get('query') || '',
@@ -60,19 +60,21 @@ export default function NavigationBar(props: Props) {
   return (
     <Navbar className="shadow-sm bg-white" expand="lg" collapseOnSelect>
       <Container>
-        <Navbar.Brand href="/"><strong>My collections</strong></Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll"/>
+        <Navbar.Brand href="/">
+          <strong>My collections</strong>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0" navbarScroll>
             {user && onLogOut ? (
-              <ProfileInfo onLogOut={onLogOut} user={user}/>
+              <ProfileInfo onLogOut={onLogOut} user={user} />
             ) : (
               <Nav.Link href="/login">
-                <FormattedMessage id="app.login.input.btn"/>
+                <FormattedMessage id="app.login.input.btn" />
               </Nav.Link>
             )}
             <Nav.Link onClick={() => onToggleTheme(theme ? '' : 'dark')}>
-              <DarkThemeIcon/> {theme ? darkModeText : lightModeText}
+              <DarkThemeIcon /> {theme ? darkModeText : lightModeText}
             </Nav.Link>
             <NavDropdown title={currentLocale} id="navbarScrollingDropdown">
               <NavDropdown.Item
@@ -107,7 +109,7 @@ export default function NavigationBar(props: Props) {
                 variant="outline-success"
                 onClick={() => handleSubmitSearch(searchValue)}
               >
-                {intl.formatMessage({id: 'app.nav.input.btn'})}
+                {intl.formatMessage({ id: 'app.nav.input.btn' })}
               </Button>
             </Form>
             {showDropDown && (

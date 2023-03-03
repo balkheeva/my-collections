@@ -55,7 +55,8 @@ export default function ModalCollection(props: Props) {
     setShowDropDown(true);
   };
 
-  const uploader = Uploader({ apiKey: 'public_FW25b5B68EAbYaWNGipBqp2FUfFo' });
+  // const uploader = Uploader({ apiKey: 'public_FW25b5B68EAbYaWNGipBqp2FUfFo' });
+  const uploader = Uploader({ apiKey: 'public_12a1xzsF1qfDJdpnS6hjiVd4chLC' });
   const uploaderOptions = {
     multi: false,
     showFinishButton: true,

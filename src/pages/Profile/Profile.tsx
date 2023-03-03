@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { Button, Stack } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
-import {useMutation, useQueryClient} from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { create, loadByUser } from '../../api/collections';

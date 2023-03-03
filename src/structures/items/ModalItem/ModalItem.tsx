@@ -25,11 +25,11 @@ export default function ModalItem(props: {
     optionalFields,
   });
 
-  const intl = useIntl()
-  const createTitle = intl.formatMessage({id: "app.items.modal.title1"})
-  const editTitle = intl.formatMessage({id: "app.items.modal.title2"})
-  const createBtnTitle = intl.formatMessage({id: "app.items.modal.btn1"})
-  const editBtnTitle = intl.formatMessage({id: "app.items.modal.btn2"})
+  const intl = useIntl();
+  const createTitle = intl.formatMessage({ id: 'app.items.modal.title1' });
+  const editTitle = intl.formatMessage({ id: 'app.items.modal.title2' });
+  const createBtnTitle = intl.formatMessage({ id: 'app.items.modal.btn1' });
+  const editBtnTitle = intl.formatMessage({ id: 'app.items.modal.btn2' });
   const mapTag = (tag: TTags) => ({ value: tag.id, label: tag.name });
   const params = useParams() as { id: string };
   const [errors, setErrors] = useState({});
@@ -100,18 +100,27 @@ export default function ModalItem(props: {
                 <label className="mb-1">{field.name}</label>
                 <Form.Select
                   className="mb-3"
-                  value={ values.optionalFields[field.id] == null ? 'null' : values.optionalFields[field.id].toString() }
+                  value={
+                    values.optionalFields[field.id] == null
+                      ? 'null'
+                      : values.optionalFields[field.id].toString()
+                  }
                   onChange={(e) =>
-                    handleChangeOV({ [field.id]: e.target.value === 'null' ? null : e.target.value === 'true' })
+                    handleChangeOV({
+                      [field.id]:
+                        e.target.value === 'null'
+                          ? null
+                          : e.target.value === 'true',
+                    })
                   }
                 >
-                  <option value='null'>
+                  <option value="null">
                     <FormattedMessage id="app.items.modal.dropdown.item1" />
                   </option>
-                  <option value='true'>
+                  <option value="true">
                     <FormattedMessage id="app.items.modal.dropdown.item2" />
                   </option>
-                  <option value='false'>
+                  <option value="false">
                     <FormattedMessage id="app.items.modal.dropdown.item3" />
                   </option>
                 </Form.Select>
