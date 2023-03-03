@@ -9,7 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { authContext } from '../../context/auth/authContext';
 
-const initialValues = { name: '', email: '', password: '' };
+const initialValues = { name: '', email: '', password: '' , adminrole: false};
 type FormData = typeof initialValues;
 
 export default function Register() {
@@ -90,6 +90,7 @@ export default function Register() {
             onChange={handleChange}
             label={intl.formatMessage({ id: 'app.register.input.label3' })}
           />
+
           {error ? <Alert variant="danger">{error.toString()}</Alert> : null}
           <p className="text-center">
             <FormattedMessage id="app.register.input.text" />{' '}
@@ -109,6 +110,9 @@ export default function Register() {
             >
               <FormattedMessage id="app.register.input.btn" />
             </Button>
+          </Stack>
+          <Stack>
+          <Form.Check className="mt-3 m-auto" onChange={(e) => handleChange({adminrole: e.target.checked})} label={intl.formatMessage({id: "app.register.isAdmin"})}/>
           </Stack>
         </Form>
       </Container>

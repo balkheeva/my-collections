@@ -110,6 +110,12 @@
   "app.register.input.btn": "Зарегистрироваться",
   "app.register.input.text": "Уже зарегистрированы? Войдите",
   "app.register.input.link": "здесь",
+  "app.register.isAdmin": "Зарегистрироваться как админ (для тестирования)",
+
+  "app.collection.modal.opfield.title": "Добавить поле",
+  "app.collection.modal.opfield.placeholder1": "Выберите тип",
+  "app.collection.modal.opfield.placeholder2": "Введите название поля",
+  "app.collection.modal.opfield.btn": "Добавить",
 
   "yes": "Да",
   "no": "Нет"

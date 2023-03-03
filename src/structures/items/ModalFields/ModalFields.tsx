@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 
 import InputForm from '../../../components/InputForm/InputForm';
+import {FormattedMessage, useIntl} from "react-intl";
 
 type Props = {
   initialValues?: any;
@@ -21,6 +22,8 @@ export default function ModalFields(props: Props) {
   const [errors, setErrors] = useState({});
   const { show, onClose, onSubmit, initialValues = defaultValues } = props;
   const [values, setValues] = useState(initialValues);
+
+  const intl = useIntl()
 
   const handleChange = (data: any) => {
     setValues({ ...values, ...data });
@@ -42,12 +45,12 @@ export default function ModalFields(props: Props) {
   return (
     <Modal show={show} onHide={onClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Add field</Modal.Title>
+        <Modal.Title><FormattedMessage id="app.collection.modal.opfield.title"/></Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
           <Form.Select onChange={(e) => handleChangeType(e.target.value)}>
-            <option>Select type</option>
+            <option><FormattedMessage id="app.collection.modal.opfield.placeholder1"/></option>
             {fields.map((field, index) => (
               <option key={index} value={field.type}>
                 {field.type}
@@ -56,15 +59,15 @@ export default function ModalFields(props: Props) {
           </Form.Select>
           <InputForm
             name="name"
-            placeholder="Enter a field name"
+            placeholder={intl.formatMessage({id: "app.collection.modal.opfield.placeholder2"})}
             onChange={handleChange}
-            values={values.name}
+            values={values}
             errors={errors}
           />
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={() => handleSubmit(values)}>Submit</Button>
+        <Button onClick={() => handleSubmit(values)}><FormattedMessage id="app.collection.modal.opfield.btn"/></Button>
       </Modal.Footer>
     </Modal>
   );

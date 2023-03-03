@@ -110,6 +110,12 @@
   "app.register.input.btn": "Register",
   "app.register.input.text": "Already have an account? Sign in",
   "app.register.input.link": "here",
+  "app.register.isAdmin": "Register as admin (for test purpose)",
+
+  "app.collection.modal.opfield.title": "Add field",
+  "app.collection.modal.opfield.placeholder1": "Select type",
+  "app.collection.modal.opfield.placeholder2": "Enter a field name",
+  "app.collection.modal.opfield.btn": "Submit",
 
   "yes": "Yes",
   "no": "No"
